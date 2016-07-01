@@ -1,0 +1,39 @@
+<html>
+
+<head>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<title>Maze Solver</title>
+</head>
+
+<body>
+
+<h2>Maze Solver</h2>
+<div id="header_links_div"></div>
+<script src="js/header_links.js"></script>
+<hr>
+
+<p>Maze Solver is a computer program that can solve mazes.<br>
+It works using <a href='https://www.khanacademy.org/computing/computer-science/algorithms/intro-to-algorithms/a/route-finding'>this algorithm</a>. To create a
+maze, just left-click and drag on the screen below to create walls, middle-click to clear walls, and right-click to place start and ending locations. Then,
+click the button saying "Solve Maze" and it will draw red circles connecting your start location to your end location.</p>
+
+<button onclick='startCreation();' id='StartButton'>Create Maze</button><br><br>
+
+<p id='DoesItWork' style="color:#ff0000;"></p>
+
+<form id='Form'>
+Size: <input type='number' value=50>
+</form>
+
+<canvas height=0 width=0 id='Canvas' oncontextmenu='return false;'></canvas>
+
+<script src="js/mazesolver.js"></script>
+
+
+</body>
+<footer>
+<p>MazeSolver is licensed under the <a href='LICENSE.txt'>GNU General public license</a>.</p>
+</footer>
+
+</html>

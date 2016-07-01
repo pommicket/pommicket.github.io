@@ -1,0 +1,69 @@
+<html>
+<head>
+<script src="js/latexit.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+<title>AutoArt Explanation</title>
+</head>
+
+<body>
+
+<h2>Explanation of AutoArt</h2>
+<a class="header_link" href="index.html">Home</a>
+<a class="header_link" href="all.html">All</a>
+<a class="header_link" href="mathematical.html">Mathematical Demonstrations</a>
+<a class="header_link" href="games.html">Games</a>
+<a class="header_link" href="apps.html">Android Apps</a>
+<hr>
+
+<h4><a href="AutoImages.html">AutoImages:</a></h4>
+<p>AutoImages works by creating random functions using Markov Chains. Every image on your computer is made up of many very small squares called "pixels". Each pixel has a red, green
+and blue value. If a pixel has a red of 255, a green of 0, and a blue of 0, the pixel will be red. AutoImages creates 3 functions, the red function, green function, and blue function.
+Each function takes in the x and y position of each pixel (where the pixel is), and returns the red, green, or blue value for that pixel.
+
+<div lang="latex">
+\\
+R(x, y) =$ the red value of the pixel at position $(x, y)\\
+G(x, y) =$ the green value of the pixel at position $(x, y)\\
+B(x, y) =$ the blue value of the pixel at position $(x, y)\\
+$Where $R, G,$ and $B$ are created randomly.
+</div>
+
+<p>It uses the random functions to calculate the colour of each pixel in the image.</p>
+
+<h4><a href="AutoVideos.html">AutoVideos:</a></h4>
+<p>
+AutoImages works by creating random functions using Markov Chains. Every video on your computer is made up of many images called "frames". When you play a video, you are just
+seeing a series of images played very quickly (at 24 images per second). Each image is made up of pixels, and each pixel has a red, green, and blue value. AutoVideos' functions
+given the colour of each pixel given its x and y positions, and its frame number (the first frame is frame #0, the second is frame #1 and so on).
+</p>
+<div lang="latex">
+\\
+t =$ Frame number$\\
+R(x, y, t) =$ the red value of the pixel at position $(x, y)$ in frame number $t\\
+G(x, y, t) =$ the green value of the pixel at position $(x, y)$ in frame number $t\\
+B(x, y, t) =$ the blue value of the pixel at position $(x, y)$ in frame number $t\\
+$Where $R, G,$ and $B$ are created randomly.
+
+</div>
+
+<h4><a href="AutoAudio.html">AutoAudio:</a></h4>
+<p>
+All audio is stored as a series of samples. Each sample has a y position. For example the function</p>
+<div lang="latex">
+\\
+y(t) = sin(880 \pi t)\\
+$If $t$ is the time at which the sample is played
+</div>
+<p>  sounds like an A
+on a piano. AutoAudio creates a random function, then plays it.
+</p>
+<div lang="latex">
+S(t) =$ the $y$ position of sample at time $t
+</div>
+
+
+</body>
+
+</html>

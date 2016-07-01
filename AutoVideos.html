@@ -1,0 +1,75 @@
+<html>
+
+
+<head>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/latexit.js"></script>
+<link rel="shortcut icon" type="image/png" href="favicon.png">
+<title>AutoVideos</title>
+
+</head>
+
+
+<body>
+
+<h2>AutoVideos</h2>
+<div id="header_links_div"></div>
+<script src="js/header_links.js"></script>
+<hr>
+<p>AutoVideos is a program that creates computer generated videos.<br>
+For an explanation of AutoAudio, go <a href="explanation.html">here</a>
+First click the create button then the download button.<br>
+If the download button doesn't work, just right click on the image then click "Save image as...".
+Change X and Y to change the resolution of the image.<br>
+After you click create, wait until the image shows, then click "Download".</p>
+
+
+
+<form id='Options'>
+<fieldset>
+<legend>Options</legend>
+X: <input type="number" name="xinput" value="426">
+<br>
+Y: <input type="number" name="yinput" value="240">
+<br>
+Length: <input type='number' name='leninput' value='4'>
+<br>
+Frame rate: <input type='number' name='frinput' value='12'><br>
+<input type='checkbox'> Notify me when it finishes.
+</fieldset>
+<br>
+<fieldset>
+<legend>Advanced Options</legend>
+Single operation weight: <input type='number' value='1'><br>
+Number weight: <input type='number' value='1'><br>
+Function length: <input type='number' value='60'><br>
+</fieldset>
+</form>
+
+<br>
+<button onclick="create();" type='button' class="btn btn-success">Create</button>
+<br><br>
+
+<p id='Time'></p>
+
+<p id='Error'></p>
+
+<video width=0 height=0 id='Video' controls></video><br><br>
+<canvas id='Canvas' width=0 height=0></canvas>
+
+<div id='Function' lang='latex'></div>
+
+<script src="http://antimatter15.com/whammy/whammy.js"></script>
+<script src="js/AutoVideos.js"></script>
+
+<noscript>
+<h1>This web application requires javascript.</h1>
+</noscript>
+
+</body>
+<footer>
+<p>AutoArt is licensed under the <a href='LICENSE.txt'>GNU General public license</a>.</p>
+</footer>
+
+</html>

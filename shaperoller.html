@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Shape roller</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<h2>Shape Roller</h2>
+<div id="header_links_div"></div>
+<script src="js/header_links.js"></script>
+<hr>
+<p>This program rolls (invisible) shapes around other (invisible) shapes and traces a point on the shape as it moves along.<br>
+Here's an animation of how it works (from Wikimedia):<br> <img width=100 height=100 src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Cardiod_animation.gif" target="_blank"></p>
+
+
+<script src="js/p5.js"></script>
+<script src="js/shaperoller.js"></script>
+
+Speed: <input type="number" id="speed" value="0.5"><br>
+<p>Quality will be lost at higher speeds</p>
+
+<div id="shapes">
+
+<span id="rt0">Radius:</span>
+<input type="number" value="100" id="radius0">
+<span id="st0">Shape:</span> 
+<select id="shape0">
+<option value="circle">Circle</option>
+<option value="square">Square</option>
+</select>
+<button id="del0" onclick="deleteShape(0);">Delete</button><br id="br0">
+
+<span id="rt1">Radius:</span>
+<input type="number" value="50" id="radius1">
+<span id="st1">Shape:</span> 
+<select id="shape1">
+<option value="circle">Circle</option>
+<option value="square">Square</option>
+</select>
+<button id="del1" onclick="deleteShape(1);">Delete</button><br id="br1">
+
+
+</div>
+
+<button onclick="addShape();">Add shape</button><br>
+<button onclick="startDrawing();">Start!</button>
+
+
+<div id="canvasSpot"></div>
+
+</body>
+
+
+</html>

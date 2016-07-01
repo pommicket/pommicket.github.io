@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>NameGenerator</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+#loading
+{
+	font-size: 20px;
+}
+button:active
+{
+	background-color: #ff0000;
+	color:#ff0000;
+}
+</style>
+
+<script src="js/NameGenerator.js"></script>
+
+</head>
+
+
+<body>
+<h2>Name Generator</h2>
+<div id="header_links_div"></div>
+<script src="js/header_links.js"></script>
+<hr>
+<p>Name Generator generates names using a method created by <a href="https://en.wikipedia.org/wiki/Claude_Shannon" target="_blank">Claude Shannon</a>.
+Claude Shannon created fake English text by going to a random page in a book, and writing down the first letter on the page.
+Let's say it was "h". Then, he would flip to another random page in the book, and find the first occurrence of the letter "h". Let's say
+it was in the word "had". He would then write down the letter that followed the "h", in this case "a", then flip to another page in the book,
+and find that the first occurrence of "a" was followed by "l", and so on. This program is slightly different. It takes two random (taking into 
+account the frequencies of letters in English) letters. It finds what those two letters are commonly followed by. Then it takes the last two letters,
+and finds what those two letters are commonly followed by, and so on. There is also a faster offline version <a href="https://github.com/pommicket/NameGenerator" target="_blank">on GitHub</a><br><br>
+After clicking "Create Names!", the button will become red until it has finished loading. To download the names, click on the download link, then press Ctrl+S/Command+S.</p>
+
+Number of names: <input type="number" id="numNames" value=10><br>
+Display names at bottom <input id="outputNames" type="checkbox" checked=true> (Unchecking this option will mean that you will have to download the names to see them)<br><br>
+<button id="button" onclick="createNames();">Create Names!</button><br>
+<a id="download" target="_blank"></a>
+
+<div id="names">
+</div>
+
+<p id="loading">Loading...</p>
+
+</body>
+
+</html>
