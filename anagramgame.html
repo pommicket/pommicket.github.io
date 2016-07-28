@@ -1,0 +1,27 @@
+<html>
+  <head>
+	<title>The Anagram Game</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+	<h2>The Anagram Game</h2>
+	<div id="header_links_div"></div>
+	<script src="js/header_links.js"></script>
+	<hr>
+	<p>The word list can be found <a href="https://raw.githubusercontent.com/sindresorhus/word-list/master/words.txt">here</a>.</p>
+	<div id="loading">Loading word list...</div>
+	<div id="word"></div>
+	<div id="hidden" style="visibility: hidden;">
+	  <input type="text" id="guess" onKeyDown="if(event.keyCode==13) submit();">
+	  <button onclick="submit();">Submit guess</button>
+	  <button onclick="giveUp();">Give up?</button>
+	  
+	</div>
+	<div id="answer"></div>
+	<button id="again" style="visibility: hidden;" onclick="play();">Play again</button>
+	<script src="js/anagramgame.js"></script>
+  </body>
+  
+</html>
