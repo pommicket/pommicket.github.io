@@ -1,3 +1,4 @@
+var k = 5;
 function repeatString(string, nTimes)
 {
     /*
@@ -7,14 +8,21 @@ function repeatString(string, nTimes)
     return Array(nTimes+1).join(string);
 }
 
-function bin8(x)
+function pad(x, nDigits)
+{
+    /* pad("33", 10) -> "0000000033" */
+
+    for (var s = x; s.length < nDigits; s = "0" + s);
+    return s;
+}
+
+function bin(x, nDigits)
 {
     /*
-    Returns an 8-digit binary representation of x, adding zeros to the start if necessary.
-    E.g. bin8(42) -> "00101010"
+    Returns an n-digit binary representation of x, adding zeros to the start if necessary.
+    E.g. bin(3, 11) -> "00000000011"
     */
-    var s;
-    for (s = x.toString(2) /* Convert to binary */; s.length < 8; s = "0" + s /* Add zero to start */);
+    for (var s = x.toString(2) /* Convert to binary */; s.length < nDigits; s = "0" + s /* Add zero to start */);
     return s;
 }
 
@@ -71,12 +79,10 @@ function drawState(state, t)
     }
 }
 
-function getNewValue(rule, a, b, c)
+function getNewValue(rule, above, c, binStrings)
 {
-    /* Get new value of a cell given the three cells above it. */
-    var above = a+b+c;
-    var binUpTo7 = ["111", "110", "101", "100", "011", "010", "001", "000"];
-    return rule[binUpTo7.indexOf(above)];
+    /* Get new value of a cell given the cells above it. */
+    return rule[binStrings.indexOf(above)];
 }
 
 
@@ -87,6 +93,7 @@ $(document).ready(function() {
         /* An elementary cellular automaton (e.g. Rule 110 (https://en.wikipedia.org/wiki/Rule_110)) */
         var time = parseInt($("#time").val()); /* Amount of time to run the automaton for. */
         var size = parseInt($("#size").val()); /* Size of the starting automaton (bits). */
+        var c = parseInt($("#c").val());
         var startingConfig = $("#start").val(); /* Starting configuration for the automaton. */
         var ruleNumber = parseInt($("#rule").val()); /* Rule number (e.g. 110). (0 <= x < 256) This must be converted to a binary number before use. */
 
@@ -96,7 +103,8 @@ $(document).ready(function() {
             return;
         }
 
-        if (!check(ruleNumber >= 0 && ruleNumber < 256, "Error - Rule number " + ruleNumber +  " does not exist. 0 &le; Rule number &le; 255"))
+        if (!check(ruleNumber >= 0 && ruleNumber < Math.pow(2, Math.pow(2, 2*c+1)),
+                    "Error - Rule number " + ruleNumber +  " does not exist. 0 &le; Rule number &le; 2<sup>2<sup>2c+1</sup></sup>"))
         {
             /* Check for an out-of-bounds rule number. */
             return;
@@ -118,7 +126,7 @@ $(document).ready(function() {
             return;
         }
 
-        var rule = bin8(ruleNumber);
+        var rule = bin(ruleNumber, Math.pow(2, 2*c+1));
 
         document.getElementById("canvas").width = size*2;
         document.getElementById("canvas").height = time*2;
@@ -134,18 +142,27 @@ $(document).ready(function() {
         /* Run the automaton. */
 
         drawState(startingConfig, 0);
-
+        var binStrings = Array.from(Array(Math.pow(2, 2*c+1)).keys()).map(function(x) { return bin(x, 2*c+1); }).reverse();
         var lastState = startingConfig;
-
+        
         for (var t = 1; t < time; t++)
         {
-            var nextState = [getNewValue(rule, "0", lastState[0], lastState[1])];
-
-            for (var i = 1; i < size-1; i++)
+            var nextState = "";
+            for (var i = 0; i < c; i++)
             {
-                nextState.push(getNewValue(rule, lastState[i-1], lastState[i], lastState[i+1]));
+                nextState += getNewValue(rule, pad(lastState.substring(0, i+c+1), 2*c+1), c, binStrings)
             }
-            nextState.push(getNewValue(rule, lastState[size-2], lastState[size-1], "0"));
+
+            for (var i = c; i < size-c; i++)
+            {
+                nextState += getNewValue(rule, lastState.substring(i-c, i+c+1), c, binStrings);
+            }
+
+            for (var i = size-c; i < size; i++)
+            {
+                nextState += getNewValue(rule, pad(lastState.substring(i-c, size), 2*c+1), c, binStrings);
+            }
+
             drawState(nextState, t);
             lastState = nextState;
         }

@@ -19,6 +19,11 @@
     color: red;
 }
 
+button:active
+{
+    background-color: #ff0000;
+}
+
 </style>
 
 </head>
@@ -32,15 +37,17 @@
 
 <div id="explanation">
 This is a program which runs <a href="https://en.wikipedia.org/wiki/Elementary_cellular_automaton">elementary cellular automata</a>
-like <a href="https://en.wikipedia.org/wiki/Rule_110">Rule 110</a>. Each cell is determined by the 3 cells above it, using
-rules specified by the rule number.
+like <a href="https://en.wikipedia.org/wiki/Rule_110">Rule 110</a>. Each cell is determined by the 3 cells above it (assuming speed of light = 1), using
+rules specified by the rule number. The "speed of light", (A.K.A. the range) is how quickly information travels. Each cell is determined by
+the 2c+1 cells where c is the "speed of light". Rule number &lt; 2<sup>2<sup>2n+1</sup></sup>
 </div>
 
 Number of iterations: <input type="number" id="time" min="0" value="500"></input><br>
 Size (if the length of the starting configuration is less than the size, zeros will be added to both sides):
 <input type="number" id="size" value="500"><br>
 Starting configuration: <input type="text" id="start" value="101" size="50"></input><br>
-Rule number: <input type="number" id="rule" min="0" max="255" value="110"></input><br>
+Rule number: <input type="number" id="rule" min="0" value="110"></input><br>
+"Speed of light": <input type="number" id="c" min="0" value="1"></input><br>
 <button id="run">Run</button>
 
 <div id="error"></div><br>
