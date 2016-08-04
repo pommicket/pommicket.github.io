@@ -108,7 +108,7 @@ function loadWords()
 function submit()
 {
 	var guess = document.getElementById("guess").value.toLowerCase();
-	if (letterCounts(guess).equals(letterCounts(word)) && isWord(guess))
+	if (guess != word && letterCounts(guess).equals(letterCounts(word)) && isWord(guess))
 	{
 		document.getElementById("answer").style = "";
 		document.getElementById("answer").innerHTML = "<span style='color: green'>Correct!</span>";
