@@ -1,20 +1,19 @@
 <html>
-<head>
-<title>The Mandelbrot Set</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
+    <head>
+        <title>The Mandelbrot Set</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="navbar"></div>
+        <script src="navbar.js"></script>
+        <h2>Mandelbrot Set</h2>
 
-</head>
-<body>
-<h2>Mandelbrot Set</h2>
-<div id="header_links_div"></div>
-<script src="js/header_links.js"></script>
-<hr>
-
-<p>The Mandelbrot Set is a <a target="_blank" href="https://en.wikipedia.org/wiki/Fractal">fractal</a>. An explanation of how it works can be found <a href="mandelbrot_explanation.html">here</a>. Click on a spot to zoom in on that spot or press A to zoom in and
-Q to zoom out. Press P to increase the power, and L to decrease it. Press I to increase the maximum number of iterations and K to decrease it.<br>
-<b>Every time you zoom in or out, change the power, or change the maximum number of iterations it will take a bit of time to load.</b></p>
-<canvas width=500 height=500 id="canvas"></canvas>
-<script src="js/mandelbrot.js"></script>
-</body>
+        <p>The Mandelbrot Set is a <a target="_blank" href="https://en.wikipedia.org/wiki/Fractal">fractal</a>. An explanation of how it works can be found <a href="mandelbrot_explanation.html">here</a>. Click on a spot to zoom in on that spot or press A to zoom in and
+        Q to zoom out. Press P to increase the power, and L to decrease it. Press I to increase the maximum number of iterations and K to decrease it.<br>
+        <b>Every time you zoom in or out, change the power, or change the maximum number of iterations it will take a bit of time to load.</b></p>
+        <canvas width=500 height=500 id="canvas"></canvas>
+        <script src="js/mandelbrot.js"></script>
+    </body>
 </html>

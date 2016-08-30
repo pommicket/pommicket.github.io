@@ -17,10 +17,10 @@
 		<script type="text/javascript">
 		<!--
 			var config = {
-				width: 960, 
+				width: 960,
 				height: 600,
 				params: { enableDebugging:"0" }
-				
+
 			};
 			var u = new UnityObject2(config);
 
@@ -30,7 +30,7 @@
 				var $brokenScreen = jQuery("#unityPlayer").find(".broken");
 				$missingScreen.hide();
 				$brokenScreen.hide();
-				
+
 				u.observeProgress(function (progress) {
 					switch(progress.pluginStatus) {
 						case "broken":
@@ -118,10 +118,9 @@
 		</style>
 	</head>
 	<body>
+		<div id="navbar"></div>
+        <script src="navbar.js"></script>
 		<h2>Domino Simulator</h2>
-		<div id="header_links_div"></div>
-		<script src="js/header_links.js"></script>
-		<hr>
 		<p>Use the arrow keys to move, and WASD to rotate the camera, and press R and T to rotate the domino.
 		When you are done, press Enter, then click to shoot a cube at the dominos.
 		Domino Simulator requires the Unity Web Player, so it won't work on Google Chrome.</p>

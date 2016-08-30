@@ -1,59 +1,40 @@
 <html>
-<head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
 
-<title>Elementary Cellular Automata</title>
+        <title>Elementary Cellular Automata</title>
+        <link rel="stylesheet" href="css/cellularautomata.css">
 
-<style>
-#start
-{
-    font-family: monospace;
-}
+    </head>
 
-#error
-{
-    color: red;
-}
+    <body>
+        <div id="navbar"></div>
+        <script src="navbar.js"></script>
+        <h2>Elementary Cellular Automata</h2>
 
-button:active
-{
-    background-color: #ff0000;
-}
+        <div id="explanation">
+        This is a program which runs <a href="https://en.wikipedia.org/wiki/Elementary_cellular_automaton">elementary cellular automata</a>
+        like <a href="https://en.wikipedia.org/wiki/Rule_110">Rule 110</a>. Each cell is determined by the 3 cells above it (assuming speed of light = 1), using
+        rules specified by the rule number. The "speed of light", (A.K.A. the range) is how quickly information travels. Each cell is determined by
+        the 2c+1 cells where c is the "speed of light". Rule number &lt; 2<sup>2<sup>2c+1</sup></sup>
+        </div>
 
-</style>
+        Number of iterations: <input type="number" id="time" min="0" value="500"></input><br>
+        Size (if the length of the starting configuration is less than the size, zeros will be added to both sides):
+        <input type="number" id="size" value="500"><br>
+        Starting configuration: <input type="text" id="start" value="101" size="50"></input><br>
+        Rule number: <input type="number" id="rule" min="0" value="110"></input><br>
+        "Speed of light": <input type="number" id="c" min="0" value="1"></input><br>
+        <button id="run">Run</button>
 
-</head>
+        <div id="error"></div><br>
+        <canvas id="canvas" width="1000" height="500"></canvas>
 
-<body>
-<h2>Elementary Cellular Automata</h2>
-<div id="header_links_div"></div>
-<script src="js/header_links.js"></script>
+        <script src="js/elementarycellularautomata.js"></script>
 
-<hr>
-
-<div id="explanation">
-This is a program which runs <a href="https://en.wikipedia.org/wiki/Elementary_cellular_automaton">elementary cellular automata</a>
-like <a href="https://en.wikipedia.org/wiki/Rule_110">Rule 110</a>. Each cell is determined by the 3 cells above it (assuming speed of light = 1), using
-rules specified by the rule number. The "speed of light", (A.K.A. the range) is how quickly information travels. Each cell is determined by
-the 2c+1 cells where c is the "speed of light". Rule number &lt; 2<sup>2<sup>2c+1</sup></sup>
-</div>
-
-Number of iterations: <input type="number" id="time" min="0" value="500"></input><br>
-Size (if the length of the starting configuration is less than the size, zeros will be added to both sides):
-<input type="number" id="size" value="500"><br>
-Starting configuration: <input type="text" id="start" value="101" size="50"></input><br>
-Rule number: <input type="number" id="rule" min="0" value="110"></input><br>
-"Speed of light": <input type="number" id="c" min="0" value="1"></input><br>
-<button id="run">Run</button>
-
-<div id="error"></div><br>
-<canvas id="canvas" width="1000" height="500"></canvas>
-
-<script src="js/elementarycellularautomata.js"></script>
-
-</body>
+    </body>
 </html>

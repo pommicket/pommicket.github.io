@@ -1,20 +1,20 @@
 <html>
 <head>
-<title>AutoHarmonograph</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
+    <title>AutoHarmonograph</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
 </head>
 <body>
-<h2>AutoHarmonograph</h2>
-<div id="header_links_div"></div>
-<script src="js/header_links.js"></script>
-<hr>
+    <div id="navbar"></div>
+    <script src="navbar.js"></script>
+    <h2>AutoHarmonograph</h2>
 
-Number of pendulums: <input type="number" id="npendulums"><br>
-Maximum damping: <input type="number" id="DMAX"><br>
-<button onclick="start();">Start</button><br>
-<button onclick="saveCanvas();">Save image</button><br>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
-<script src="js/AutoHarmonograph.js"></script>
+    Number of pendulums: <input type="number" id="npendulums"><br>
+    Maximum damping: <input type="number" id="DMAX"><br>
+    <button onclick="start();">Start</button><br>
+    <button onclick="saveCanvas();">Save image</button><br>
+    <script src="js/AutoHarmonograph.js"></script>
 </body>
 </html>

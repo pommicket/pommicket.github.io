@@ -1,21 +1,22 @@
 <html>
-<head>
-<title>Langton's Ant</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
-</head>
-<body>
-<h2>Langton's Ant</h2>
-<div id="header_links_div"></div>
-<script src="js/header_links.js"></script>
-<hr>
+    <head>
+        <title>Langton's Ant</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="navbar"></div>
+        <script src="navbar.js"></script>
+        <h2>Langton's Ant</h2>
 
-<button onclick="start();">Start</button><br>
-<button onclick="stop();">Stop</button><br>
-<button onclick="clearCells();">Clear</button><br>
-<button onclick="resetPos();">Reset ant position</button><br>
-<div>Speed: <input type="number" id="speed" value=1></div>
+        <button onclick="start();">Start</button><br>
+        <button onclick="stop();">Stop</button><br>
+        <button onclick="clearCells();">Clear</button><br>
+        <button onclick="resetPos();">Reset ant position</button><br>
+        <div>Speed: <input type="number" id="speed" value=1></div>
 
-<script src="js/ant.js"></script>
+        <script src="js/ant.js"></script>
+    </body>
 </html>

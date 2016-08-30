@@ -1,72 +1,71 @@
 <html>
-<head>
-<script src="js/latexit.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
+    <head>
+        <script src="js/latexit.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <title>Mandelbrot Set Explanation</title>
+    </head>
 
-<title>Mandelbrot Set Explanation</title>
-</head>
+    <body>
 
-<body>
+        <div id="navbar"></div>
+        <script src="navbar.js"></script>
 
-<h2>Explanation of the Mandelbrot Set</h2>
-<div id="header_links_div"></div>
-<script src="js/header_links.js"></script>
-<hr>
+        <h2>Explanation of the Mandelbrot Set</h2>
 
-Consider the function
-<div lang="latex">
-f_c(z) = z^2+c\\
-</div><br>
-Where z and c are complex numbers. Complex numbers are numbers in the form of
-<div lang="latex">
-\\
-ai+b\\
-$Where $i=\sqrt{-1}
-</div>
-<br>
-Now let's check if 0.5 is in the Mandelbrot Set. To do so, start at 0
-<div lang="latex">
-\\
-f_{0.5}(0) = 0^2 + 0.5 = 0.5\\
-f_{0.5}(0.5) = 0.5^2 + 0.5 = 0.75\\
-f_{0.5}(0.75) = 1.0625\\
-f_{0.5}(1.0625) = 1.62890625\\
-f_{0.5}(1.62890625) = 3.15333557\\
-</div>
-<br>
-It can be proven that if the function passes 2, it will go to infinity if you continually apply the function.
-Since this function has passed 2, 0.5 is not in the Mandelbrot Set. Compare this to 0.25.
+        Consider the function
+        <div lang="latex">
+        f_c(z) = z^2+c\\
+        </div><br>
+        Where z and c are complex numbers. Complex numbers are numbers in the form of
+        <div lang="latex">
+        \\
+        ai+b\\
+        $Where $i=\sqrt{-1}
+        </div>
+        <br>
+        Now let's check if 0.5 is in the Mandelbrot Set. To do so, start at 0
+        <div lang="latex">
+        \\
+        f_{0.5}(0) = 0^2 + 0.5 = 0.5\\
+        f_{0.5}(0.5) = 0.5^2 + 0.5 = 0.75\\
+        f_{0.5}(0.75) = 1.0625\\
+        f_{0.5}(1.0625) = 1.62890625\\
+        f_{0.5}(1.62890625) = 3.15333557\\
+        </div>
+        <br>
+        Since this function has passed 2, 0.5 is not in the Mandelbrot Set. Compare this to 0.25.
 
-<div lang="latex">
-\\
-f_{0.25}(0) = 0^2+0.25 = 0.25\\
-f_{0.25}(0.25) = 0.3125\\
-f_{0.25}(0.3125) = 0.34765625\\
-f_{0.25}(0.34765625) = 0.370864868\\
-f_{0.25}(0.370864868) = 0.38754075\\
-f_{0.25}(0.38754075) = 0.400187833\\
-f_{0.25}(0.400187833) = 0.410150302\\
-f_{0.25}(0.410150) = 0.418223\\
-f_{0.25}(0.418223) = 0.424911\\
-f_{0.25}(0.424911) = 0.430549\\
-f_{0.25}(0.430549) = 0.435373\\
-f_{0.25}(0.435373) = 0.439549\\
-f_{0.25}(0.439549) = 0.443204\\
-f_{0.25}(0.443204) = 0.446429\\
-f_{0.25}(0.446429) = 0.449299\\
-</div>
-<br>
-This will never pass 2, so 0.25 is in the Mandelbrot Set.
-<br>
-This process can also be done to complex numbers.<br>
-<br>
-<div lang="latex">
-M(x) =$ the number of iterations required for $f_x$ to pass 2.$ 
-</div>
+        <div lang="latex">
+        \\
+        f_{0.25}(0) = 0^2+0.25 = 0.25\\
+        f_{0.25}(0.25) = 0.3125\\
+        f_{0.25}(0.3125) = 0.34765625\\
+        f_{0.25}(0.34765625) = 0.370864868\\
+        f_{0.25}(0.370864868) = 0.38754075\\
+        f_{0.25}(0.38754075) = 0.400187833\\
+        f_{0.25}(0.400187833) = 0.410150302\\
+        f_{0.25}(0.410150) = 0.418223\\
+        f_{0.25}(0.418223) = 0.424911\\
+        f_{0.25}(0.424911) = 0.430549\\
+        f_{0.25}(0.430549) = 0.435373\\
+        f_{0.25}(0.435373) = 0.439549\\
+        f_{0.25}(0.439549) = 0.443204\\
+        f_{0.25}(0.443204) = 0.446429\\
+        f_{0.25}(0.446429) = 0.449299\\
+        </div>
+        <br>
+        This will never pass 2, so 0.25 is in the Mandelbrot Set.
+        <br>
+        This process can also be done to complex numbers.<br>
+        <br>
+        <div lang="latex">
+        M(x) =$ the number of iterations required for $f_x$ to pass 2.$
+        </div>
 
-The website is just a 2d plot of M(x).
+        The website is just a 2d plot of M(x).
 
-</body>
+    </body>
 
 </html>

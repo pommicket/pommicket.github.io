@@ -1,0 +1,14 @@
+#start
+{
+    font-family: monospace;
+}
+
+#error
+{
+    color: red;
+}
+
+button:active
+{
+    background-color: #ff0000;
+}

@@ -1,71 +1,68 @@
 <html>
 
-<head>
-<script src="js/latexit.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="shortcut icon" type="image/png" href="favicon.png">
-<title>AutoImages</title>
-</head>
+    <head>
+        <script src="js/latexit.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="shortcut icon" type="image/png" href="favicon.png">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <title>AutoImages</title>
+    </head>
 
-<body>
+    <body>
+        <div id="navbar"></div>
+        <script src="navbar.js"></script>
 
-<h2>AutoImages</h2>
-<a class="header_link" href="index.html">Home</a>
-<a class="header_link" href="all.html">All</a>
-<a class="header_link" href="mathematical.html">Mathematical Demonstrations</a>
-<a class="header_link" href="games.html">Games</a>
-<a class="header_link" href="apps.html">Android Apps</a>
-<hr>
-<p>AutoImages is a program that creates computer generated images.<br>
-For an explanation of AutoImages, go <a href="explanation.html">here</a><br>
-First click the create button then the download button.<br>
-If the download button doesn't work, just right click on the image then click "Save image as...".
-Change X and Y to change the resolution of the image.<br>
-After you click create, wait until the image shows, then click "Download".</p>
+        <h2>AutoImages</h2>
+        <p>AutoImages is a program that creates computer generated images.<br>
+        For an explanation of AutoImages, go <a href="explanation.html">here</a><br>
+        First click the create button then the download button.<br>
+        If the download button doesn't work, just right click on the image then click "Save image as...".
+        Change X and Y to change the resolution of the image.<br>
+        After you click create, wait until the image shows, then click "Download".</p>
 
-<br>
-<button onclick="create();" type='button' class="btn btn-success">Create</button>
-<br><br>
+        <br>
+        <button onclick="create();" type='button' class="btn btn-success">Create</button>
+        <br><br>
 
-<form id='Options'>
-<fieldset>
-<legend>Options</legend>
-X: <input type="number" name="xinput" value="1000">
-<br>
-Y: <input type="number" name="yinput" value="500"><br>
-<input type='checkbox'> Notify me when it finishes.
-</fieldset>
-<fieldset>
-<legend>Advanced Options</legend>
-Single operator weight: <input type='number' value='1'><br>
-Number weight: <input type='number' value='1'><br>
-Function length: <input type='number' value='60'><br>
-</fieldset>
-</form>
+        <form id='Options'>
+        <fieldset>
+        <legend>Options</legend>
+        X: <input type="number" name="xinput" value="1000">
+        <br>
+        Y: <input type="number" name="yinput" value="500"><br>
+        <input type='checkbox'> Notify me when it finishes.
+        </fieldset>
+        <fieldset>
+        <legend>Advanced Options</legend>
+        Single operator weight: <input type='number' value='1'><br>
+        Number weight: <input type='number' value='1'><br>
+        Function length: <input type='number' value='60'><br>
+        </fieldset>
+        </form>
 
-<p id='Error'></p>
+        <p id='Error'></p>
 
-<p id='Time'></p>
+        <p id='Time'></p>
 
-<a id='Download' href="" download='AutoImage.png'></a>
+        <a id='Download' href="" download='AutoImage.png'></a>
 
-<br>
+        <br>
 
-<canvas id='Canvas' width=0 height=0></canvas>
+        <canvas id='Canvas' width=0 height=0></canvas>
 
-<br><br>
+        <br><br>
 
-<div id='Function' lang='latex'></div>
+        <div id='Function' lang='latex'></div>
 
-<script src="js/AutoImages.js"></script>
+        <script src="js/AutoImages.js"></script>
 
-<noscript>
-<h1>This web application requires javascript.</h1>
-</noscript>
+        <noscript>
+        <h1>This web application requires javascript.</h1>
+        </noscript>
 
-</body>
-<footer>
-<p>AutoArt is licensed under the <a href='LICENSE.txt'>GNU General public license</a>.</p>
-</footer>
+    </body>
+    <footer>
+        <p>AutoArt is licensed under the <a href='LICENSE.txt'>GNU General public license</a>.</p>
+    </footer>
 </html>

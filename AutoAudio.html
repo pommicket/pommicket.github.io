@@ -1,67 +1,63 @@
 <html>
+    <head>
+        <script src="js/latexit.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="shortcut icon" type="image/png" href="favicon.png">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="js/riffwave.js"></script>
+        <title>AutoAudio</title>
+    </head>
+
+    <body>
+        <div id="navbar"></div>
+        <script src="navbar.js"></script>
+        <h2>AutoAudio</h2>
 
 
-<head>
-<script src="js/latexit.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="shortcut icon" type="image/png" href="favicon.png">
-<title>AutoAudio</title>
-</head>
+        <p>AutoAudio is a program that creates computer generated audio.<br>
+        For an explanation of AutoAudio, go <a href="explanation.html">here</a> <br>
+        After you click "Create", please wait until the audio finishes before listening to it.
+        </p>
 
-<body>
-
-<h2>AutoAudio</h2>
-<a class="header_link" href="index.html">Home</a>
-<a class="header_link" href="all.html">All</a>
-<a class="header_link" href="mathematical.html">Mathematical Demonstrations</a>
-<a class="header_link" href="games.html">Games</a>
-<a class="header_link" href="apps.html">Android Apps</a>
-<hr>
-
-<p>AutoAudio is a program that creates computer generated audio.<br>
-For an explanation of AutoAudio, go <a href="explanation.html">here</a> <br>
-After you click "Create", please wait until the audio finishes before listening to it.
-</p>
-
-<p id='Error'></p>
+        <p id='Error'></p>
 
 
-<script src='js/riffwave.js'></script>
 
-<form id='Options'>
-<fieldset>
-<legend>Options</legend>
-Length: <input type="number" name="leninput" value="5"><br>
-<input type='checkbox'> Notify me when it finishes.
-</fieldset>
-<fieldset>
-<legend>Advanced Options</legend>
-Single operator weight: <input type='number' value='1'><br>
-Number weight: <input type='number' value='1'><br>
-Function length: <input type='number' value='60'><br>
-</fieldset>
-</form>
 
-<br>
-<button onclick="create();" type='button' class="btn btn-success">Create</button>
-<br><br>
+        <form id='Options'>
+        <fieldset>
+        <legend>Options</legend>
+        Length: <input type="number" name="leninput" value="5"><br>
+        <input type='checkbox'> Notify me when it finishes.
+        </fieldset>
+        <fieldset>
+        <legend>Advanced Options</legend>
+        Single operator weight: <input type='number' value='1'><br>
+        Number weight: <input type='number' value='1'><br>
+        Function length: <input type='number' value='60'><br>
+        </fieldset>
+        </form>
 
-<audio id='Audio' controls></audio>
+        <br>
+        <button onclick="create();" type='button' class="btn btn-success">Create</button>
+        <br><br>
 
-<br><br>
+        <audio id='Audio' controls></audio>
 
-<p id='Time'></p>
+        <br><br>
 
-<div id='Function' lang='latex'></div>
+        <p id='Time'></p>
 
-<script src="js/AutoAudio.js"></script>
-<noscript>
-<h1>This web application requires javascript.</h1>
-</noscript>
+        <div id='Function' lang='latex'></div>
 
-</body>
-<footer>
-<p>AutoArt is licensed under the <a href='LICENSE.txt'>GNU General public license</a>.</p>
-</footer>
+        <script src="js/AutoAudio.js"></script>
+        <noscript>
+        <h1>This web application requires javascript.</h1>
+        </noscript>
+
+    </body>
+    <footer>
+        <p>AutoArt is licensed under the <a href='LICENSE.txt'>GNU General public license</a>.</p>
+    </footer>
 </html>

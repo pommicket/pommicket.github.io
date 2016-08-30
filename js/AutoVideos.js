@@ -10,7 +10,6 @@ var numberweights = {"Constant":1};
 var numberweight;
 var singleweight;
 var eqlength;
-var functionp = document.getElementById('Function');
 var notify;
 
 for(var i = 0; i < single.length; i++)
@@ -224,7 +223,7 @@ function create()
 	'		y = Math.floor((i/4) / xsize);'+
 	'		r = Math.abs(Math.round((' + requation + ') % 255));'+
 	'		g = Math.abs(Math.round((' + gequation + ') % 255));'+
-	'		b = Math.abs(Math.round((' + bequation + ') % 255));'+			
+	'		b = Math.abs(Math.round((' + bequation + ') % 255));'+
 	'		data[i] = r;'+
 	'		data[i+1] = g;'+
 	'		data[i+2] = b;'+
@@ -239,21 +238,21 @@ function create()
 	var url = webkitURL.createObjectURL(output);
 	video.src = url;
 
-	ctx.drawImage(video, 0, 0);
+	$("#Canvas").hide();
+
 	d = new Date();
 	var end = d.getTime();
-	var timeparagraph = document.getElementById('Time');
 	var timetaken = Math.round((end-start)/1000);
 	if (timetaken == 1)
 	{
-		timeparagraph.innerHTML = 'The time it took was 1 second.';
+		$("#Time").html('The time it took was 1 second.');
 	}
 	else
 	{
-		timeparagraph.innerHTML = 'The time it took was ' + timetaken + ' seconds.';
+		$("#Time").html('The time it took was ' + timetaken + ' seconds.');
 	}
 
-	functionp.innerHTML = '$Functions: \\newline\\newline Red: $' + rmvmath(requation) + '$\\newline\\newline Green: $' + rmvmath(gequation) + '$\\newline\\newline Blue: $' + rmvmath(bequation) + '$';
+	$("#Function").html('$Functions: \\newline\\newline Red: $' + rmvmath(requation) + '$\\newline\\newline Green: $' + rmvmath(gequation) + '$\\newline\\newline Blue: $' + rmvmath(bequation) + '$');
 	LatexIT.render('*',false);
 
 	if(notify)
