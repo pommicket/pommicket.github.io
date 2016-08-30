@@ -51,12 +51,12 @@ function rmvmath(str)
 		}
 	}
 	return newstr;
-};
+}
 
 function randItem(l)
 {
 	return l[Math.floor(Math.random() * l.length)];
-};
+}
 
 function countChar(string, letter)
 {
@@ -69,7 +69,7 @@ function countChar(string, letter)
 		}
 	}
 	return amount;
-};
+}
 
 
 
@@ -149,7 +149,7 @@ function randEquation()
         equation += ')';
 	}
     return equation;
-};
+}
 
 
 function create()
@@ -224,17 +224,39 @@ function create()
 
 	functionp.innerHTML = '$Functions: \\newline\\newline Red: $' + rmvmath(requation) + '$\\newline\\newline Green: $' + rmvmath(gequation) + '$\\newline\\newline Blue: $' + rmvmath(bequation) + '$';
 	LatexIT.render('*',false);
+
+	stopLoading();
+
 	if(notify)
 	{
 		alert('Your image has finished.');
 	}
 	document.getElementById('Download').innerHTML = "Download";
-};
+}
 
+function startLoading()
+{
+	$('#Create').prop('disabled', true);
+	$('#Create').html('Loading...');
+}
 
-function download() {
+function stopLoading()
+{
+	$('#Create').prop('disabled', false);
+	$('#Create').html('Create');
+}
+
+function start()
+{
+	startLoading();
+	window.setTimeout(create, 1);
+}
+
+function download()
+{
     var dt = canvas.toDataURL('image/png');
     this.href = dt;
-};
+}
+
 var downloadLink = document.getElementById('Download');
 downloadLink.addEventListener('click', download, false);

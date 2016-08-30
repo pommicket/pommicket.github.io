@@ -2,7 +2,6 @@
 var canvas = document.getElementById('Canvas');
 var form = document.getElementById('Form');
 
-canvas.onmousedown = function(e) { if (e.button === 1) return false; }
 
 var X;
 var Y;
@@ -367,7 +366,7 @@ function mousePressed(event)
 
 	var button = -1;
 
-	if ("which" in event) 
+	if ("which" in event)
         if (event.which == 2) button = 1; else if (event.which == 3) button = 2; else button = 0;
     else if ("button" in event)
         button = event.button;

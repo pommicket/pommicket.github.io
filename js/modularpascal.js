@@ -32,10 +32,10 @@ function updateTriangle()
 		{
 			fill(colors[triangle[i][j]][0], colors[triangle[i][j]][1], colors[triangle[i][j]][2]);
 			rect(getPos(i, j)[0], getPos(i, j)[1], 2, 2);
-			
+
 		}
 	}
-	
+
 }
 
 function setup()
@@ -51,5 +51,5 @@ function getPos(row, column)
 
 function draw()
 {
-	
+
 }

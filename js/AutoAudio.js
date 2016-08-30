@@ -62,7 +62,7 @@ function rmvmath(str)
 		}
 	}
 	return newstr;
-};
+}
 
 function randEquation()
 {
@@ -156,6 +156,8 @@ function create()
 	var start = date.getTime();
 	var form = document.getElementById('Options');
 	var errtag = document.getElementById('Error');
+
+
 	errtag.innerHTML = '';
 	for (var i = 0; i < form.elements.length; i++)
 	{
@@ -201,6 +203,8 @@ function create()
 	functionp.innerHTML = '$Function: $' + rmvmath(equation);
 	LatexIT.render('*',false);
 
+	stopLoading();
+
 	if(notify)
 	{
 		alert('Your audio has finished.');
@@ -210,4 +214,22 @@ function create()
 
 
 
+}
+
+function startLoading()
+{
+	$('#Create').prop('disabled', true);
+	$('#Create').html('Loading...');
+}
+
+function stopLoading()
+{
+	$('#Create').prop('disabled', false);
+	$('#Create').html('Create');
+}
+
+function start()
+{
+	startLoading();
+	window.setTimeout(create, 1);
 }

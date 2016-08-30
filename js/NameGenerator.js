@@ -2,7 +2,7 @@
 var trigrams = {};
 var trigramKeyList;
 var sumStartsWith = {};
-	
+
 function loadTrigrams(responseText)
 {
 	var lines = responseText.split('\n');
@@ -14,9 +14,9 @@ function loadTrigrams(responseText)
 			continue;
 		trigrams[trigram] = value;
 	}
-	
+
 	trigramKeyList = Object.keys(trigrams);
-	
+
 	document.getElementById("loading").innerHTML = "";
 }
 
@@ -24,7 +24,7 @@ function start()
 {
 	var xhttp = new XMLHttpRequest();
 
-	xhttp.onreadystatechange = function() 
+	xhttp.onreadystatechange = function()
 	{
 		if (xhttp.readyState == 4 && xhttp.status == 200)
 		{
@@ -37,10 +37,10 @@ function start()
 
 function pickFirst2()
 {
-	
+
 	var count = 0;
 	var sum = 0;
-	
+
 	for (var i = 0; i < trigramKeyList.length; i++)
 	{
 		if (trigramKeyList[i][0] == ' ')
@@ -48,10 +48,10 @@ function pickFirst2()
 			sum += trigrams[trigramKeyList[i]];
 		}
 	}
-	
+
 	var selected = Math.random() * sum;
-	
-	
+
+
 	for (var i = 0; i < trigramKeyList.length; i++)
 	{
 		if (trigramKeyList[i][0] == ' ')
@@ -61,7 +61,7 @@ function pickFirst2()
 				return trigramKeyList[i].substring(1);
 		}
 	}
-	
+
 	return "ERROR";
 }
 
@@ -84,7 +84,7 @@ function nextChar(name)
 	}
 	var selected = Math.random() * total;
 	var count = 0;
-	
+
 	for (var i = 0; i < trigramKeyList.length; i++)
 	{
 		if (trigramKeyList[i].substring(0, 2) == last2)
@@ -94,7 +94,7 @@ function nextChar(name)
 				return trigramKeyList[i][2];
 		}
 	}
-	
+
 	return "ERROR";
 }
 
@@ -111,39 +111,58 @@ function generateName()
 		next = nextChar(name);
 	}
 	while (next != ' ');
-	
+
 	name = name[0].toUpperCase() + name.substring(1);
-	
-	
+
+
 	return name;
 }
 
 
 function createNames()
 {
-	document.getElementById("button").disabled = true;
 	var nameStr = '';
 	var numNames = document.getElementById("numNames").value;
 	var nameDiv = document.getElementById("names");
-	
+
 	window.setTimeout(50, function() {document.getElementById("loading").innerHTML = "Loading...";});
-	
+
 	nameDiv.innerHTML = "";
-	
+
 	for (var i = 0; i < numNames; i++)
 		nameStr += generateName() + "<br>";
-	
+
 	if (document.getElementById("outputNames").checked)
 		nameDiv.innerHTML = nameStr;
-	
+
 	document.getElementById("loading").innerHTML = "";
-	
+
 	var dload;
 	dload = document.getElementById("download");
 	dload.innerHTML = "Download names (.txt)";
 	var txt = nameStr.replace(/<br>/g, "\n");
 	dload.href = "data:text/plain;charset=utf-8," + encodeURI(txt);
-	document.getElementById("button").disabled = false;
+
+	stopLoading();
+}
+
+function startLoading()
+{
+	$('#button').prop('disabled', true);
+	$('#button').html('Loading...');
+}
+
+function stopLoading()
+{
+	$('#button').prop('disabled', false);
+	$('#button').html('Create Names!');
+}
+
+
+function create()
+{
+	startLoading();
+	window.setTimeout(createNames, 1);
 }
 
 start();
