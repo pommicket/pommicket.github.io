@@ -14,8 +14,8 @@ var started = false;
 
 function sinExp(A, t, f, p, d)
 {
-	
-	
+
+
 	return A*sin(t*f + p) * exp(-d*t);
 }
 
@@ -42,7 +42,7 @@ Pendulum.prototype.swing = function()
 		var x = 0;
 		var y = sinExp(this.a, t, this.f, this.p, this.d);
 	}
-	
+
 	return [x, y];
 }
 
@@ -75,7 +75,7 @@ function addPendulum()
 	txt.id = "pt" + npendulums;
 	document.body.appendChild(txt);
 	document.body.appendChild(p);
-	
+
 	txt = document.createElement("p");
 	txt.innerHTML = "Amplitude:";
 	txt.id = "at" + npendulums;
@@ -85,7 +85,7 @@ function addPendulum()
 	a.id = "A" + npendulums;
 	document.body.appendChild(txt);
 	document.body.appendChild(a);
-	
+
 	txt = document.createElement("p");
 	txt.innerHTML = "Damping:";
 	txt.id = "dt" + npendulums;
@@ -95,8 +95,8 @@ function addPendulum()
 	d.id = "d" + npendulums;
 	document.body.appendChild(txt);
 	document.body.appendChild(d);
-	
-	
+
+
 	txt = document.createElement("p");
 	txt.innerHTML = "Frequency:";
 	var f = document.createElement("input");
@@ -106,7 +106,7 @@ function addPendulum()
 	txt.id = "ft" + npendulums;
 	document.body.appendChild(txt);
 	document.body.appendChild(f);
-	
+
 	txt = document.createElement("p");
 	txt.innerHTML = "Is it a Y pendulum? (you should have at least one X and Y pendulum) ";
 	var xy = document.createElement("input");
@@ -119,8 +119,8 @@ function addPendulum()
 	var br = document.createElement("br");
 	br.id = "br" + npendulums;
 	document.body.appendChild(br);
-	
-	
+
+
 	txt = document.createTextNode("Delete this pendulum");
 	var delBtn = document.createElement("button");
 	delBtn.setAttribute("onclick", "deletePendulum(" + npendulums + ");");
@@ -138,16 +138,16 @@ function deletePendulum(x)
 	document.body.removeChild(document.getElementById("f" +x));
 	document.body.removeChild(document.getElementById("A" +x));
 	document.body.removeChild(document.getElementById("xy" +x));
-	
+
 	document.body.removeChild(document.getElementById("pt" +x));
 	document.body.removeChild(document.getElementById("dt" +x));
 	document.body.removeChild(document.getElementById("ft" +x));
 	document.body.removeChild(document.getElementById("at" +x));
 	document.body.removeChild(document.getElementById("xyt" +x));
-	
+
 	document.body.removeChild(document.getElementById("db" +x));
 	document.body.removeChild(document.getElementById("br" +x));
-	
+
 	for (var i = x+1; i < npendulums; i++)
 	{
 		document.getElementById("p"+i).id = "p"+(i-1);
@@ -175,15 +175,14 @@ function start()
 	frameRate(1000);
 	for (var i = 0; i < npendulums; i++)
 	{
-		//document.write("Hello");
-		var a = document.getElementById("A" + i).value;
-		var f = document.getElementById("f" + i).value;
-		var p = document.getElementById("p" + i).value;
-		var d = document.getElementById("d" + i).value;
-		var xy = document.getElementById("xy"+i).checked;
+		var a = $("#A" + i).value;
+		var f = $("#f" + i).value;
+		var p = $("#p" + i).value;
+		var d = $("#d" + i).value;
+		var xy = $("#xy"+i).checked;
 		new Pendulum(parseFloat(a), parseFloat(d), parseFloat(f), parseFloat(p), xy);
 	}
-	
+
 }
 
 function saveCanvas()
@@ -199,8 +198,8 @@ function draw()
 	curr = calculate();
 	if (t !== 0)
 		line(pp[0], pp[1], curr[0], curr[1]);
-	
-	
+
+
 	t++;
 	pp = curr;
 }

@@ -1,5 +1,3 @@
-try
-{
 var lineLength = 5;
 var canvas;
 var ctx;
@@ -46,14 +44,14 @@ function multiple(e)
 		if (allendpoints[i].equals(e))
 		{
 			count++;
-			
+
 			if (count > 1)
 				return true;
 		}
 	}
-	
+
 	return false;
-			
+
 }
 
 function rmvAll(e)
@@ -70,30 +68,30 @@ function iterate()
 {
 	var indexOfThis = endpoints.indexOf(this);
 	endpoints.splice(indexOfThis, 1);
-	
-	if (this.direction == 'h')
+
+	if (this.direction == "h")
 	{
 		line(this.x-lineLength, this.y, this.x+lineLength, this.y);
-		var e1 = new Endpoint(this.x-lineLength, this.y, 'v');
-		var e2 = new Endpoint(this.x+lineLength, this.y, 'v');
-		
+		var e1 = new Endpoint(this.x-lineLength, this.y, "v");
+		var e2 = new Endpoint(this.x+lineLength, this.y, "v");
+
 
 	}
 	else
 	{
 		line(this.x, this.y-lineLength, this.x, this.y+lineLength);
-		var e1 = new Endpoint(this.x, this.y-lineLength, 'h');
-		var e2 = new Endpoint(this.x, this.y+lineLength, 'h');
-		
+		var e1 = new Endpoint(this.x, this.y-lineLength, "h");
+		var e2 = new Endpoint(this.x, this.y+lineLength, "h");
+
 	}
-	
+
 	if (Math.random() < chance)
 		endpoints.push(e1);
 	if (Math.random() < chance)
 		endpoints.push(e2);
 	allendpoints.push(e1);
 	allendpoints.push(e2);
-	
+
 }
 
 Endpoint.prototype.equals=equals;
@@ -102,34 +100,33 @@ Endpoint.prototype.iterate=iterate;
 
 function iterateAll()
 {
-	
+
 	var cpy = endpoints.slice();
-	
+
 	for (var i = 0; i < cpy.length; i++)
 		if (multiple(cpy[i]))
 			rmvAll(cpy[i]);
-			
+
 	cpy = endpoints.slice();
 	for (var i = 0; i < cpy.length; i++)
 		cpy[i].iterate();
-		
+
 	iterateTimeout = setTimeout(iterateAll, delay);
 }
 
 function stop()
 {
+	$("#stop").hide();
 	running = false;
+
 	if (!stopped)
 	{
 		clearTimeout(iterateTimeout);
-		var download = document.createElement('a');
-		download.innerHTML = 'Download H';
-		download.href = canvas.toDataURL();
-		download.download = 'h.png';
-		download.id = 'download';
-		document.body.appendChild(download);
+		$("#download").show();
+		$("#link").prop("href", canvas.toDataURL());
 		stopped = true;
 	}
+
 }
 
 function start()
@@ -137,13 +134,13 @@ function start()
 	if (!running)
 	{
 		running = true;
-		
-	
+
+
 		w = canvas.width;
 		h = canvas.height;
 		endpoints = [];
 		allendpoints = [];
-		var a = new Endpoint(w/2, h/2, 'h');
+		var a = new Endpoint(w/2, h/2, "h");
 		endpoints.push(a);
 		a.iterate();
 		iterateAll();
@@ -153,51 +150,39 @@ function start()
 
 function beginH()
 {
-try{
+	$("#begin").hide();
 	if (!stopped)
 	{
-		canvas = document.getElementById('canvas');
-		
-		var w = parseInt(document.getElementById('w').value);
-		var h = parseInt(document.getElementById('h').value);
+		canvas = document.getElementById("canvas");
+
+		var w = parseInt($("#w").val());
+		var h = parseInt($("#h").val());
 		canvas.width = w;
 		canvas.height = h;
-		
-		ctx = canvas.getContext('2d');
-		ctx.strokeStyle = "#000";
-		ctx.fillStyle = '#fff';
-		
-		ctx.fillRect(0, 0, w, h);
-	
-		lineLength= document.getElementById('lineLength').value;
-		lineLength = parseInt(lineLength);
-	
-		delay = parseInt(document.getElementById('delay').value);
 
-		document.body.appendChild(canvas);
-		document.body.appendChild(document.createElement('br'));
-		
-		chance = parseFloat(document.getElementById('chance').value);
-	
-	
+		ctx = canvas.getContext("2d");
+		ctx.strokeStyle = "#000";
+		ctx.fillStyle = "#fff";
+
+		ctx.fillRect(0, 0, w, h);
+
+		lineLength = parseInt($("#lineLength").val());
+
+		delay = parseInt($("#delay").val());
+
+		chance = parseFloat($("#chance").val());
+
+
 		start();
 	}
 	else
 	{
-		document.body.removeChild(document.getElementById('download'));
 		iterateAll();
 		stopped = false;
 	}
-	}
-catch(e)
-{
-	document.write(e);
-}
 }
 
-
-}
-catch(e)
+$(function()
 {
-	document.write(e);
-}
+	$("#download").hide();
+});

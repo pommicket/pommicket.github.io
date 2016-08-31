@@ -10,10 +10,15 @@
         <script src="navbar.js"></script>
         <h2>Mandelbrot Set</h2>
 
-        <p>The Mandelbrot Set is a <a target="_blank" href="https://en.wikipedia.org/wiki/Fractal">fractal</a>. An explanation of how it works can be found <a href="mandelbrot_explanation.html">here</a>. Click on a spot to zoom in on that spot or press A to zoom in and
-        Q to zoom out. Press P to increase the power, and L to decrease it. Press I to increase the maximum number of iterations and K to decrease it.<br>
-        <b>Every time you zoom in or out, change the power, or change the maximum number of iterations it will take a bit of time to load.</b></p>
-        <canvas width=500 height=500 id="canvas"></canvas>
+        <div class="container-fluid">
+            <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12" id="explanation">
+                The Mandelbrot Set is a <a target="_blank" href="https://en.wikipedia.org/wiki/Fractal">fractal</a>. An explanation of how it works can be found <a href="mandelbrot_explanation.html">here</a>. Click on a spot to zoom in on that spot or press A to zoom in and
+                Q to zoom out. Press P to increase the power, and L to decrease it. Press I to increase the maximum number of iterations and K to decrease it.<br>
+                <b>Every time you zoom in or out, change the power, or change the maximum number of iterations it will take a bit of time to load.</b>
+            </div>
+        </div>
+        <br>
+        <canvas width="500" height="500" id="canvas"></canvas>
         <script src="js/mandelbrot.js"></script>
     </body>
 </html>

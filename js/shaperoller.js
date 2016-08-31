@@ -33,7 +33,7 @@ function deleteShape(num)
 	removeElementById("radius"+num);
 	removeElementById("del"+num);
 	removeElementById("br"+num);
-	
+
 }
 
 function updateShapes()
@@ -49,7 +49,7 @@ function updateShapes()
 		radii.push(document.getElementById("radius" + i).value);
 	}
 	speed = parseFloat(document.getElementById("speed").value);
-	
+
 }
 
 function loadShapes()
@@ -69,7 +69,7 @@ function addShape()
 	updateShapes();
 	var nShapes = getNumShapes();
 	var shapesDiv = document.getElementById("shapes");
-	shapesDiv.innerHTML += '<span id="rt' + nShapes + '">Radius:</span> <input type="number" value="50" id="radius' + nShapes + '"> <span id="st' + nShapes + '">Shape:</span> ' + 
+	shapesDiv.innerHTML += '<span id="rt' + nShapes + '">Radius:</span> <input type="number" value="50" id="radius' + nShapes + '"> <span id="st' + nShapes + '">Shape:</span> ' +
 	'<select id="shape' + nShapes + '"><option value="circle">Circle</option><option value="square">Square</option></select> <button id="del' + nShapes + '" onclick="deleteShape(' + nShapes + ');">Delete</button><br id="br' + nShapes + '">';
 	shapes.push(0);
 	radii.push(50);
@@ -104,7 +104,7 @@ function squos(angle)
 	if (angle > QUARTER_PI && angle < 3*QUARTER_PI)
 		return -map(angle, QUARTER_PI, 3*QUARTER_PI, -1, 1);
 	return map(angle, 5*QUARTER_PI, 7*QUARTER_PI, -1, 1);
-	
+
 }
 
 function getPointOnShape(shape, radius, centerX, centerY, angle)
@@ -123,7 +123,7 @@ function setup()
 }
 
 function draw()
-{	
+{
 	updateShapes();
 	try{
 	if (drawing)
@@ -131,36 +131,36 @@ function draw()
 		background(255);
 		stroke(0);
 		noFill();
-		
+
 		var centerX = width/2;
 		var centerY = height/2;
 		var nextPoint;
-		
+
 		for (var i = 0; i < shapes.length; i++)
 		{
-			
+
 			var angle = map(currentAngle%radii[i], 0, radii[i], 0, TWO_PI);
 			nextPoint = getPointOnShape(shapes[i], radii[i], centerX, centerY, angle);
 			centerX = nextPoint[0];
 			centerY = nextPoint[1];
-			
+
 		}
-		
-		
+
+
 		points.push([centerX, centerY]);
-		
-		
-		
+
+
+
 		if (points.length != 1 && dist(points[0][0], points[0][1], points[points.length-1][0], points[points.length-1][1]) < speed)
 			drawing = false;
-		
-		
+
+
 		for (var i = 1; i < points.length; i++)
 		{
 			line(points[i-1][0], points[i-1][1], points[i][0], points[i][1]);
 		}
-		
-		
+
+
 		currentAngle += speed;
 		if (drawing)
 		{

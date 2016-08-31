@@ -15,23 +15,57 @@
         <div id="navbar"></div>
         <script src="navbar.js"></script>
         <h2>Elementary Cellular Automata</h2>
-
-        <div id="explanation">
-        This is a program which runs <a href="https://en.wikipedia.org/wiki/Elementary_cellular_automaton">elementary cellular automata</a>
-        like <a href="https://en.wikipedia.org/wiki/Rule_110">Rule 110</a>. Each cell is determined by the 3 cells above it (assuming speed of light = 1), using
-        rules specified by the rule number. The "speed of light", (A.K.A. the range) is how quickly information travels. Each cell is determined by
-        the 2c+1 cells where c is the "speed of light". Rule number &lt; 2<sup>2<sup>2c+1</sup></sup>
+        <div class="container-fluid">
+            <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12" id="explanation">
+                This is a program which runs <a href="https://en.wikipedia.org/wiki/Elementary_cellular_automaton">elementary cellular automata</a>
+                like <a href="https://en.wikipedia.org/wiki/Rule_110">Rule 110</a>. Each cell is determined by the 3 cells above it (assuming speed of light = 1), using
+                rules specified by the rule number. The "speed of light", (A.K.A. the range) is how quickly information travels. Each cell is determined by
+                the 2c+1 cells where c is the "speed of light". Rule number &lt; 2<sup>2<sup>2c+1</sup></sup>
+            </div>
         </div>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Number of iterations</span>
+                    <input id="time" class="form-control" type="number" min="1" value="500">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Size</span>
+                    <input id="size" class="form-control" type="number" min="1" value="500">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Starting configuration</span>
+                    <input id="start" class="form-control" type="text" value="101">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Rule number</span>
+                    <input id="rule" class="form-control" type="number" min="0" value="110">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">"Speed of light"</span>
+                    <input id="c" class="form-control" type="number" min="1" value="1">
+                </div>
+            </div>
 
-        Number of iterations: <input type="number" id="time" min="0" value="500"></input><br>
-        Size (if the length of the starting configuration is less than the size, zeros will be added to both sides):
-        <input type="number" id="size" value="500"><br>
-        Starting configuration: <input type="text" id="start" value="101" size="50"></input><br>
-        Rule number: <input type="number" id="rule" min="0" value="110"></input><br>
-        "Speed of light": <input type="number" id="c" min="0" value="1"></input><br>
-        <button id="run">Run</button>
+        </div>
+        <br>
 
-        <div id="error"></div><br>
+        <button class="btn btn-primary" id="run">Run</button>
+
+        <div class="text-danger" id="error"></div><br>
         <canvas id="canvas" width="1000" height="500"></canvas>
 
         <script src="js/elementarycellularautomata.js"></script>

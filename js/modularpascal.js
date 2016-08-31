@@ -1,15 +1,16 @@
-var triangle = [];
-var colors = [];
-var currentX;
+
 function getX()
 {
-	return document.getElementById("mod").value;
+	return $("#mod").val();
 }
 
 
 
 function updateTriangle()
 {
+	var triangle = [];
+	var colors = [];
+	var currentX;
 	var x = getX();
 	triangle = [];
 	currentX = x;

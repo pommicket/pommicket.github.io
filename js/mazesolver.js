@@ -1,6 +1,5 @@
 
-var canvas = document.getElementById('Canvas');
-var form = document.getElementById('Form');
+var canvas = document.getElementById("Canvas");
 
 
 var X;
@@ -26,7 +25,7 @@ for (var i = 0; i < Y; i++)
 }
 
 
-var ctx = canvas.getContext('2d');
+var ctx = canvas.getContext("2d");
 
 var mouseDown = false;
 
@@ -37,7 +36,6 @@ var begun = false;
 var start; //(location)
 var end; //(location)
 
-var doesItWorkParagraph = document.getElementById('DoesItWork');
 
 function reset()
 {
@@ -198,38 +196,21 @@ function getTilesToGoal()
 	while (!(equals2d(tilesToGoal, oldTTG)));
 
 
-
-	/*for (var y = 0; y < tilesToGoal.length; y++)
-	{
-		for (var x = 0; x < tilesToGoal[y].length; x++)
-			document.write(tilesToGoal[y][x] + ' ');
-
-		document.write('<br>');
-	}*/
-
-
 	if (tilesToGoal[start[1]][start[0]] < 0)
 		return false;
 
 	return true;
 }
 
-function remove(element)
-{
-	element.parentNode.removeChild(element);
-}
-
 function startCreation()
 {
-	var size = form.elements[0].value;
+	var size = $("#size").val();
 	X = size;
 	Y = size;
-	var button = document.getElementById('StartButton');
-	button.innerHTML = 'Solve Maze';
-	button.onclick = function(){try{begin();}catch(err){document.write(err)}};
-	remove(form);
-	canvas.width = 500;
-	canvas.height = 500;
+	$("#Canvas").show();
+	$("#begin").show();
+	$("#StartButton").html("Clear maze");
+	$("#form").hide();
 	reset();
 	clear();
 
@@ -240,7 +221,7 @@ function begin()
 
 	if (!(startPlaced && endPlaced))
 	{
-		doesItWorkParagraph.innerHTML = 'You must choose a start and end location (right-click).';
+		$("#Error").html("You must choose a start and end location (right-click).");
 		reset();
 		clear();
 		return;
@@ -250,7 +231,7 @@ function begin()
 	var mazeWorks = getTilesToGoal();
 	if (mazeWorks === false)
 	{
-		doesItWorkParagraph.innerHTML = 'Maze cannot be solved.';
+		$("#Error").html("Maze cannot be solved.");
 		reset();
 		clear();
 		return;
@@ -268,7 +249,7 @@ function begin()
 		x = location[0];
 		y = location[1];
 
-		circle(x * TILEWIDTH + TILEWIDTH / 2, y * TILEWIDTH + TILEWIDTH / 2, parseInt(TILEWIDTH / 2.5), '#ffaaaa');
+		circle(x * TILEWIDTH + TILEWIDTH / 2, y * TILEWIDTH + TILEWIDTH / 2, parseInt(TILEWIDTH / 2.5), "#aaf");
 		surroundingTiles = [[x+1, y], [x, y+1], [x-1, y], [x, y-1]];
 		if (y === tilesToGoal.length - 1) surroundingTiles = rmvArray(surroundingTiles, [x, y+1]);
 		if (y === 0) surroundingTiles = rmvArray(surroundingTiles, [x, y-1]);
@@ -287,7 +268,7 @@ function begin()
 	x = location[0];
 	y = location[1];
 
-	circle(x * TILEWIDTH + TILEWIDTH / 2, y * TILEWIDTH + TILEWIDTH / 2, parseInt(TILEWIDTH / 2.5), '#ffaaaa');
+	circle(x * TILEWIDTH + TILEWIDTH / 2, y * TILEWIDTH + TILEWIDTH / 2, parseInt(TILEWIDTH / 2.5), "#aaf");
 
 	reset();
 
@@ -320,7 +301,7 @@ function mouseMoved(event)
 
 	if (button === 1)
 	{
-		rect(tilex * TILEWIDTH, tiley * TILEWIDTH, TILEWIDTH, TILEWIDTH, '#dddddd');
+		rect(tilex * TILEWIDTH, tiley * TILEWIDTH, TILEWIDTH, TILEWIDTH, "#dddddd");
 		tiles[tiley][tilex] = false;
 		if (equals([tilex, tiley], start))
 		{
@@ -343,7 +324,7 @@ function mouseMoved(event)
 
 	if (notClickedOnStart && notClickedOnEnd)
 	{
-		rect(tilex * TILEWIDTH, tiley * TILEWIDTH, TILEWIDTH, TILEWIDTH, '#aaaaaa');
+		rect(tilex * TILEWIDTH, tiley * TILEWIDTH, TILEWIDTH, TILEWIDTH, "#aaaaaa");
 		tiles[tiley][tilex] = true;
 	}
 
@@ -351,7 +332,7 @@ function mouseMoved(event)
 
 function clear()
 {
-	rect(0, 0, canvas.width, canvas.height, '#dddddd');
+	rect(0, 0, canvas.width, canvas.height, "#dddddd");
 	started = false;
 }
 
@@ -388,13 +369,13 @@ function mousePressed(event)
 		if ((!startPlaced) && (!tiles[tiley][tilex]))
 		{
 			start = [tilex, tiley];
-			rect(tilex * TILEWIDTH, tiley * TILEWIDTH, TILEWIDTH, TILEWIDTH, '#00ff00');
+			rect(tilex * TILEWIDTH, tiley * TILEWIDTH, TILEWIDTH, TILEWIDTH, "#00ff00");
 			startPlaced = true;
 		}
 		else if ((!endPlaced) && (!tiles[tiley][tilex]))
 		{
 			end = [tilex, tiley];
-			rect(tilex * TILEWIDTH, tiley * TILEWIDTH, TILEWIDTH, TILEWIDTH, '#ffff00');
+			rect(tilex * TILEWIDTH, tiley * TILEWIDTH, TILEWIDTH, TILEWIDTH, "#ffff00");
 			endPlaced = true;
 			return;
 		}
@@ -408,9 +389,9 @@ function mouseReleased(event)
 
 
 
-canvas.addEventListener('mousemove', mouseMoved, false);
-canvas.addEventListener('mousedown', mousePressed, false);
-canvas.addEventListener('mouseup', mouseReleased, false);
+canvas.addEventListener("mousemove", mouseMoved, false);
+canvas.addEventListener("mousedown", mousePressed, false);
+canvas.addEventListener("mouseup", mouseReleased, false);
 
 function circle(x, y, r, colour)
 {
@@ -430,14 +411,14 @@ function rect(x, y, w, h, colour)
 
 function text(str, x, y)
 {
-	ctx.font = "20px Helvetica";
-	ctx.fillStyle = '#000000';
+	ctx.font = "20px Arial";
+	ctx.fillStyle = "#000000";
 	ctx.fillText(str, x, y);
 }
 
 function line(x1, y1, x2, y2)
 {
-	ctx.strokeStyle = '#000000';
+	ctx.strokeStyle = "#000000";
 	ctx.beginPath();
 	ctx.moveTo(x1, y1);
 	ctx.lineTo(x2, y2);
@@ -453,4 +434,10 @@ function line(x1, y1, x2, y2, color)
 	ctx.stroke();
 };
 
-rect(0, 0, canvas.width, canvas.height, '#dddddd');
+rect(0, 0, canvas.width, canvas.height, "#dddddd");
+
+$(function()
+{
+	$("#begin").hide();
+	$("#Canvas").hide();
+});

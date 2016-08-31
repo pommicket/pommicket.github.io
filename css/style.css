@@ -2,23 +2,24 @@ footer
 {
 	font-size:12px;
 }
-.header_link
-{
-	font-size: 16px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-
-	background: #f9f9f9;
-}
-.header_link:hover
-{
-	text-decoration: none;
-	background: #eeeeee;
-}
 
 body
 {
 	margin: 10px;
+}
+
+.project-title
+{
+	font-size: 22px;
+}
+
+.checkbox
+{
+	width: 20px;
+	height: 20px;
+}
+
+.with-margin
+{
+	margin-bottom: 5px;
 }

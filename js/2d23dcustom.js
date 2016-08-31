@@ -27,7 +27,7 @@ function outOfBounds(x)
 
 function mouseDragged()
 {
-	if (outOfBounds(pmouseX) || outOfBounds(mouseX) || 
+	if (outOfBounds(pmouseX) || outOfBounds(mouseX) ||
 		outOfBounds(pmouseY) || outOfBounds(mouseY))
 		return;
 	stroke(0, 0, 0);
@@ -37,13 +37,12 @@ function mouseDragged()
 
 function mouseClicked()
 {
-	
 	if (straightLine)
 	{
 		line(slFirstPos[0], slFirstPos[1], mouseX, mouseY);
 		drawing.line(slFirstPos[0], slFirstPos[1], mouseX, mouseY);
 		straightLine = false;
-		return;	
+		return;
 	}
 	slFirstPos = [mouseX, mouseY];
 }
@@ -70,21 +69,21 @@ function draw()
 	cursor(ARROW);
 	if (!ret_pressed)
 		return;
-	
+
 	if (done)
 		return;
-		
+
 	if (angle > TWO_PI)
 		return;
-	
+
 	stroke(255, 0, 0);
 	tint(255, 0, 0);
-	var ca = cos(angle) * radius + radius + 50;
-	var sa = sin(angle) * radius + radius + 50;
-	
-	
-	image(drawing, ca, sa);
+	var x = cos(angle) * radius + radius + 50;
+	var y = sin(angle) * radius + radius + 50;
+
+
+	image(drawing, x, y);
 
 	angle += 0.1/6;
-	
+
 }

@@ -27,7 +27,7 @@ function center()
 	var centerX = 0;
 	var centerY = 0;
 	for (var i = 0; i < vertices.length; i++)
-	{ 
+	{
 		centerX += vertices[i][0] / vertices.length;
 		centerY += vertices[i][1] / vertices.length;
 	}
@@ -38,12 +38,12 @@ function twoPiApprox()
 {
 	var o = center();
 	var c = circumference();
-	
+
 	ellipseMode(CENTER);
 	fill(0, 0, 200);
 	noStroke();
 	ellipse(o[0], o[1], 5, 5);
-	
+
 	var avgR = 0;
 	var minLocation;
 	var maxLocation;
@@ -51,9 +51,9 @@ function twoPiApprox()
 	{
 		var d = dist(vertices[i][0], vertices[i][1], o[0], o[1]);
 		avgR += d / vertices.length;
-		 
+
 	}
-	
+
 	stroke(0, 255, 0);
 	noFill();
 	line(o[0], o[1], o[0]+avgR, o[1]);
@@ -61,10 +61,10 @@ function twoPiApprox()
 	ellipse(o[0], o[1], 2*avgR, 2*avgR);
 	stroke(255, 200, 0);
 	ellipse(o[0], o[1], c/PI, c/PI);
-	
-	
+
+
 	return c/(2*avgR);
-	
+
 }
 
 function setup()
@@ -90,11 +90,12 @@ function calculate()
 	{
 		percentError = 100*(PI/avgPi - 1);
 	}
-	var div = document.getElementById("info");
-	div.innerHTML = "Your approximation&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;True value<br> 2π = " + 2 * avgPi + " | " + TWO_PI + "<br> π = " +
-	+ avgPi + " | " + PI + ".<br>" + percentError + "% error.<br>"
+	$("#info").html("<div class='col-xs-12 col-sm-8 col-md-6 col-lg-4'>"
+	+ "<table class='table table-bordered table-hover'> <tr><th></th><th>Your approximation</th><th>True value</th></tr><tr><td>2π</td><td>" + 2 * avgPi
+	+ "</td><td>" + TWO_PI + "</td></tr><tr><td>π</td><td>" +
+	+ avgPi + "</td><td>" + PI + "</table>" + percentError + "% error.<br>"
 	+ "The blue dot is the center of your shape. The green line is the average radius of the shape.<br>"
 	+ "The red circle is a circle with the same radius as your shape, and the orange circle is a<br>"
 	+ "circle with the same circumference as your shape. The closer they are, the better your<br>"
-	+ "approximation of π";
+	+ "approximation of π</div>");
 }

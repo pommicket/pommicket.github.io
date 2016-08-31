@@ -67,16 +67,16 @@ function findWord()
 
 function play()
 {
-	document.getElementById("hidden").style = "visibility: hidden;";
-	document.getElementById("again").style = "visibility: hidden;";	
-	document.getElementById("answer").style = "visibility: hidden;";	
-	document.getElementById("guess").value = "";
-	document.getElementById("loading").innerHTML = "Finding a word with an anagram...";
+	$("#hidden").attr("style", "visibility: hidden;");
+	$("#again").attr("style", "visibility: hidden;");
+	$("#answer").attr("style", "visibility: hidden;");
+	$("#guess").val("");
+	$("#loading").html("Finding a word with an anagram...");
 	findWord();
-	document.getElementById("loading").innerHTML = "";
-	document.getElementById("word").innerHTML = "Find an anagram of " + word + ".";
-	document.getElementById("hidden").style = "";
-	
+	$("#loading").html("");
+	$("#word").html("Find an anagram of " + word + ".");
+	$("#hidden").attr("style", "");
+
 }
 
 function isWord(x)
@@ -100,34 +100,34 @@ function loadWords()
 			}
 			play();
 		}
-	};	
+	};
 	xhttp.open("GET", "https://raw.githubusercontent.com/sindresorhus/word-list/master/words.txt", true);
 	xhttp.send();
 }
 
 function submit()
 {
-	var guess = document.getElementById("guess").value.toLowerCase();
+	var guess = $("#guess").val().toLowerCase();
 	if (guess != word && letterCounts(guess).equals(letterCounts(word)) && isWord(guess))
 	{
-		document.getElementById("answer").style = "";
-		document.getElementById("answer").innerHTML = "<span style='color: green'>Correct!</span>";
-		
-		document.getElementById("again").style = "";
+		$("#answer").attr("style", "");
+		$("#answer").html("<span style='color: green'>Correct!</span>");
+
+		$("#again").attr("style", "");
 	}
 	else
 	{
-		document.getElementById("answer").style = "";
-		document.getElementById("answer").innerHTML = "<span style='color: red'>Incorrect!</span>";
+		$("#answer").attr("style", "");
+		$("#answer").html("<span style='color: red'>Incorrect!</span>");
 	}
 }
 
 function giveUp()
 {
-	document.getElementById("answer").style = "";
-	document.getElementById("answer").innerHTML = "<span style='color: red'>The answer was " + anagram + ".</span>";
-	
-	document.getElementById("again").style = "";
+	$("#answer").attr("style", "");
+	$("#answer").html("<span style='color: red'>The answer was " + anagram + ".</span>");
+
+	$("#again").attr("style", "");
 }
 
 loadWords();

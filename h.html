@@ -3,7 +3,7 @@
         <link rel="shortcut icon" type="image/png" href="hfavicon.png">
         <title>H</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel='stylesheet' href='css/style.css'>
+        <link rel="stylesheet" href="css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     </head>
 
@@ -11,36 +11,68 @@
         <div id="navbar"></div>
         <script src="navbar.js"></script>
 
-        <h2 style='font-family: Times New Roman'>H</h2>
+        <h2 style="font-family: Times New Roman">H</h2>
 
-        <script src='js/h.js'></script>
+        <script src="js/h.js"></script>
 
-        <p>Line lengths controls the size of the Hs, width and height control
-        how big the H can get, and wait between iterations changes how quickly the
-        Hs are generated. Click begin to start, and once you think it has
-        grown enough, click stop. You can then download the H or continue to make
-        more Hs by clicking begin again.</p>
+        <div class="container-fluid">
+            <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12" id="explanation">
+                Width and height control
+                how big it can get, and wait between iterations changes how quickly it grows.
+                When you click "Stop", you can download it.
+            </div>
+        </div>
 
-        Line lengths: <input type='number' id='lineLength' value=6><br>
-        Width: <input type='number' id='w' value=500><br>
-        Height: <input type='number' id='h' value=500><br>
-        Wait between iterations (ms): <input type='number' id='delay' value=1000>
         <br>
-        Chance that a new branch will form:
-        <input type='number' min=0 max=1 id='chance' value=1 step=0.1>
+        <div class="container-fluid">
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Line length</span>
+                    <input id="lineLength" class="form-control" type="number" value="4">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Width</span>
+                    <input id="w" class="form-control" type="number" value="500">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Height</span>
+                    <input id="h" class="form-control" type="number" value="500">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Wait between iterations (ms)</span>
+                    <input id="delay" class="form-control" type="number" value="0">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon hidden-xs">Chance that a new branch will form</span>
+                    <span class="input-group-addon hidden-sm hidden-md hidden-lg">New branch chance</span>
+                    <input id="chance" class="form-control" type="number" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+        </div>
         <br>
 
 
-        <button onclick='beginH();'>Begin</button><br>
-        <button onclick='stop();'>Stop</button><br>
+        <button class="btn btn-sm btn-success with-margin" id="begin" onclick="beginH();">Begin</button><br>
+        <button class="btn btn-sm btn-danger with-margin"  id="stop"  onclick="stop();">Stop</button><br>
 
-        <canvas width=100 height=100 id='canvas'></canvas>
+        <div id="download">
+            <a href="#" id="link" download="h.png">Download H</a>
+        </div>
 
-        <footer>
-            <p class='footer'>This program is licensed under the
-            <a href='http://autoart.neocities.org/LICENSE.txt'>GNU General public license</a>
-            </p>
-        </footer>
+        <canvas width="100" height="100" id="canvas"></canvas><br>
+
 
     </body>
 

@@ -37,7 +37,7 @@ function cpower(re, im, power)
 		i++;
 	}
 	return x;
-	
+
 }
 
 function iterate(z, power, c)
@@ -66,14 +66,12 @@ function num_iterations(power, c, max_iterations)
 function draw_mandelbrot()
 {
 	var size = width*increment;
-	
-	
-	
+
 	var endI = startI+size;
 	var endJ = startJ+size;
-	
+
 	var imgData = ctx.createImageData(width, height);
-	
+
 	for (var i = startI; i < endI; i+=increment)
 	{
 		for (var j = startJ; j < endJ; j+=increment)
@@ -82,14 +80,14 @@ function draw_mandelbrot()
 			var jpos = j*(1.0/increment)-startJ*(1.0/increment);
 			jpos = Math.floor(Math.round(jpos));
 			ipos = Math.floor(Math.round(ipos));
-			
+
 			var x = num_iterations(power, [i, j], iterations)/iterations * 255
 			imgData.data[4*(jpos*width+ipos)] = x;
 			imgData.data[1+4*(jpos*width+ipos)] = x;
 			imgData.data[2+4*(jpos*width+ipos)] = x;
 			imgData.data[3+4*(jpos*width+ipos)] = 255;
-			
-			
+
+
 		}
 	}
 	ctx.putImageData(imgData, 0, 0);
@@ -109,25 +107,25 @@ function mousePressed(e)
 {
 	var x;
 	var y;
-	if (e.pageX || e.pageY) { 
+	if (e.pageX || e.pageY) {
 	  x = e.pageX;
 	  y = e.pageY;
 	}
-	else { 
-	  x = e.clientX; 
-	  y = e.clientY; 
-	} 
+	else {
+	  x = e.clientX;
+	  y = e.clientY;
+	}
 	x -= canvas.offsetLeft;
 	y -= canvas.offsetTop;
 	if (x < 0 || x > width || y < 0 || y > height)
 		return;
-		
+
 	if (e.button == 0)
 	{
 		increment /= 2;
 		startI = map(x, 0, width, startI, startI+width*increment);
 		startJ = map(y, 0, height, startJ, startJ+width*increment);
-	 
+
 		draw_mandelbrot();
 	}
 }
@@ -141,7 +139,7 @@ function keyPressed(e)
 		increment /= 2;
 		startI = startI+width*increment/2;
 		startJ = startJ+height*increment/2;
-		
+
 		draw_mandelbrot();
 	}
 	if (key == "Q")
@@ -176,4 +174,3 @@ canvas.addEventListener("mousedown", mousePressed);
 document.body.addEventListener("keydown", keyPressed);
 
 draw_mandelbrot();
-	

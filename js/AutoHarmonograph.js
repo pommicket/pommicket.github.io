@@ -24,7 +24,7 @@ var Pendulum = function()
 		this.p = random(-PDIF, PDIF)+basepx;
 	else
 		this.p = random(-PDIF, PDIF)+basepy;
-		
+
 	pendulums.push(this);
 }
 
@@ -63,16 +63,22 @@ function calculate()
 
 function setup()
 {
-	document.getElementById("npendulums").value = 10;
-	document.getElementById("DMAX").value = DMAX;
+	createCanvas(600, 600);
 }
 
 function start()
 {
-	
+	$("#start").prop("disabled", true);
 	createCanvas(800, 800);
 	frameRate(1000);
-	DMAX = document.getElementById("DMAX").value;
+	DMAX = parseFloat($("#DMAX").val());
+	var npendulums = parseInt($("#npendulums").val());
+
+	if (isNaN(DMAX) || isNaN(npendulums))
+	{
+		$("#Error").html("Please enter a valid number.");
+	}
+
 	basepx = random(PMAX);
 	basepy = random(PMAX);
 	Ax = random(AMAX);
@@ -81,12 +87,12 @@ function start()
 	fy = random(FMAX);
 	dx = random(DMIN, DMAX);
 	dy = random(DMIN, DMAX);
-	
+
 	pendulums = [];
-	
-	for (var i = 0; i < document.getElementById("npendulums").value; i++)
+
+	for (var i = 0; i < npendulums; i++)
 		new Pendulum();
-	
+
 }
 
 function saveCanvas()
@@ -100,8 +106,8 @@ function draw()
 	curr = calculate();
 	if (t !== 0)
 		line(pp[0], pp[1], curr[0], curr[1]);
-	
-	
+
+
 	t++;
 	pp = curr;
 }

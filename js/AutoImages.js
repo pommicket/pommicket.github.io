@@ -1,6 +1,7 @@
 
-var canvas = document.getElementById('Canvas');
-var ctx = canvas.getContext('2d');
+var canvas = document.getElementById("Canvas");
+var ctx = canvas.getContext("2d");
+var flength;
 
 var single = ["Math.sqrt", "Math.cos", "Math.sin"]; //Operations on a single number
 var singleweights = {};
@@ -12,13 +13,6 @@ numlist = numlist.concat(varlist);
 var numberweights = {"Constant":1}
 var numberweight;
 var singleweight;
-var eqlength;
-var xsize;
-var ysize;
-var functionp = document.getElementById('Function');
-var notify;
-var latex;
-var mathjax;
 
 for(var i = 0; i < single.length; i++)
 {
@@ -38,10 +32,10 @@ for(var i = 0; i < varlist.length; i++)
 function rmvmath(str)
 {
 	//A function that removes all the Math.'s in a string
-	var newstr = '';
+	var newstr = "";
 	for(var i = 0; i < str.length - 5; i++)
 	{
-		if(str[i] + str[i+1] + str[i+2] + str[i+3] + str[i+4] !== 'Math.')
+		if(str[i] + str[i+1] + str[i+2] + str[i+3] + str[i+4] !== "Math.")
 		{
 			newstr += str[i]
 		}
@@ -73,11 +67,11 @@ function countChar(string, letter)
 
 
 
-function randEquation()
+function randFunction()
 {
 	var hasx = false;
     var hasy = false;
-	var equation;
+	var func;
 	var lasttype;
 	var thistype;
 	var chanceend;
@@ -88,8 +82,8 @@ function randEquation()
     while (!(hasx && hasy))
 	{
         //Types: b for binary, s for single, f for first, n for number
-        equation = '';
-        lasttype = 'f';
+        func = "";
+        lasttype = "f";
         thistype = 0;
         hasx = false;
         hasy = false;
@@ -98,152 +92,151 @@ function randEquation()
 
         while (true)
 		{
-            chanceend = Math.pow((1.0 - (1.0 / length)), eqlength);
-            if (lasttype === 'n')
+            chanceend = Math.pow((1.0 - (1.0 / length)), flength);
+            if (lasttype === "n")
 			{
                 number = Math.random();
                 if (number < chanceend)
 				{
                     break;
 				}
-                equation = '(' + equation + ')' + randItem(binary);
-                lasttype = 'b';
+                func = "(" + func + ")" + randItem(binary);
+                lasttype = "b";
 			}
-            else if (lasttype === 's' || lasttype === 'b' || lasttype === 'f')
+            else if (lasttype === "s" || lasttype === "b" || lasttype === "f")
 			{
-                equation += '(';
+                func += "(";
                 thistype = Math.random();
                 if (thistype < singleweight / (singleweight + numberweight))
 				{
-                    equation += randItem(single);
-                    lasttype = 's';
+                    func += randItem(single);
+                    lasttype = "s";
 				}
                 else
 				{
                     what = randItem(numlist);
-                    if (what === 'Constant')
+                    if (what === "Constant")
 					{
-                        equation += (Math.random(100, 200)).toString();
+                        func += (Math.random(100, 200)).toString();
 					}
                     else
 					{
-                        equation += what;
-                        if (what === 'x')
+                        func += what;
+                        if (what === "x")
 						{
                             hasx = true;
 						}
-                        else if (what === 'y')
+                        else if (what === "y")
 						{
                             hasy = true;
 						}
 					}
-                    lasttype = 'n';
-                    equation += ')';
+                    lasttype = "n";
+                    func += ")";
 				}
 			}
             length++;
 		}
 	}
-    while (countChar(equation, '(') > countChar(equation, ')'))
+    while (countChar(func, "(") > countChar(func, ")"))
 	{
-        equation += ')';
+        func += ")";
 	}
-    return equation;
+    return func;
 }
 
 
 function create()
 {
+	var width;
+	var height;
+	var notify;
+
 	var date = new Date();
 	var start = date.getTime();
 
-	form = document.getElementById('Options');
+	$("#Error").html("");
 
-	var errtag = document.getElementById('Error');
-	errtag.innerHTML = '';
 
-	for (var i = 0; i < form.elements.length; i++)
+	width = parseInt($("#width").val());
+	height = parseInt($("#height").val());
+	notify = $("#notify").prop("checked");
+
+	singleweight = parseFloat($("#single").val());
+	numberweight = parseFloat($("#number").val());
+	flength = parseFloat($("#flength").val());
+
+	if (isNaN(width) || isNaN(height) || isNaN(singleweight) || isNaN(numberweight) || isNaN(flength))
 	{
-		if (form.elements[i].value === '')
-		{
-			errtag.innerHTML = 'Please enter a valid number.';
-			return;
-		}
+		stopLoading();
+		$("#Error").html("Please enter a valid number.");
+		return;
 	}
 
-	xsize = parseInt(form.elements[1].value);
-	ysize = parseInt(form.elements[2].value);
-	notify = form.elements[3].checked;
-
-	singleweight = parseFloat(form.elements[5].value);
-	numberweight = parseFloat(form.elements[6].value);
-	eqlength = parseFloat(form.elements[7].value);
-
-	canvas.width = xsize;
-	canvas.height = ysize;
-	var imgData = ctx.createImageData(xsize, ysize);
-	var requation = randEquation();
-	var gequation = randEquation();
-	var bequation = randEquation();
+	canvas.width = width;
+	canvas.height = height;
+	var imgData = ctx.createImageData(width, height);
+	var rfunction = randFunction();
+	var gfunction = randFunction();
+	var bfunction = randFunction();
 	var x;
 	var y;
 	var r;
 	var g;
 	var b;
 	eval(
-	'for (var i=0;i<imgData.data.length;i+=4)'+
-	'{'+
-	'	x = (i/4) % xsize;'+
-	'	y = Math.floor((i/4) / xsize);'+
-	'	r = (' + requation + ') % 255;'+
-	'	g = (' + gequation + ') % 255;'+
-	'	b = (' + bequation + ') % 255;'+
-	'	r = Math.abs(Math.round(r));' +
-	'	g = Math.abs(Math.round(g));' +
-	'	b = Math.abs(Math.round(b));' +
+	"for (var i=0;i<imgData.data.length;i+=4)"+
+	"{"+
+	"	x = (i/4) % width;"+
+	"	y = Math.floor((i/4) / width);"+
+	"	r = (" + rfunction + ") % 255;"+
+	"	g = (" + gfunction + ") % 255;"+
+	"	b = (" + bfunction + ") % 255;"+
+	"	r = Math.abs(Math.round(r));" +
+	"	g = Math.abs(Math.round(g));" +
+	"	b = Math.abs(Math.round(b));" +
 
-	'	imgData.data[i] = r;' +
-	'	imgData.data[i+1] = g;' +
-	'	imgData.data[i+2] = b;' +
-	'	imgData.data[i+3] = 255;' +
-	'}');
+	"	imgData.data[i] = r;" +
+	"	imgData.data[i+1] = g;" +
+	"	imgData.data[i+2] = b;" +
+	"	imgData.data[i+3] = 255;" +
+	"}");
 	ctx.putImageData(imgData,0,0);
 	var date = new Date();
 	var end = date.getTime();
-	var timeparagraph = document.getElementById('Time');
 	var timetaken = Math.round((end-start)/1000);
 	if (timetaken === 1)
 	{
-		timeparagraph.innerHTML = 'The time it took was 1 second.';
+		$("#Time").html("The time it took was 1 second.");
 	}
 	else
 	{
-		timeparagraph.innerHTML = 'The time it took was ' + timetaken + ' seconds.';
+		$("#Time").html("The time it took was " + timetaken + " seconds.");
 	}
 
 
-	functionp.innerHTML = '$Functions: \\newline\\newline Red: $' + rmvmath(requation) + '$\\newline\\newline Green: $' + rmvmath(gequation) + '$\\newline\\newline Blue: $' + rmvmath(bequation) + '$';
-	LatexIT.render('*',false);
+	$("#Function").html("$Functions: \\newline\\newline Red: $" + rmvmath(rfunction) + "$\\newline\\newline Green: $" + rmvmath(gfunction) + "$\\newline\\newline Blue: $" + rmvmath(bfunction) + "$");
+	LatexIT.render("*",false);
 
 	stopLoading();
 
 	if(notify)
 	{
-		alert('Your image has finished.');
+		alert("Your image has finished.");
 	}
-	document.getElementById('Download').innerHTML = "Download";
+	document.getElementById("Download").innerHTML = "Download";
 }
 
 function startLoading()
 {
-	$('#Create').prop('disabled', true);
-	$('#Create').html('Loading...');
+	$("#Create").prop("disabled", true);
+	$("#Create").html("Loading...");
 }
 
 function stopLoading()
 {
-	$('#Create').prop('disabled', false);
-	$('#Create').html('Create');
+	$("#Create").prop("disabled", false);
+	$("#Create").html("Create");
 }
 
 function start()
@@ -254,9 +247,9 @@ function start()
 
 function download()
 {
-    var dt = canvas.toDataURL('image/png');
+    var dt = canvas.toDataURL("image/png");
     this.href = dt;
 }
 
-var downloadLink = document.getElementById('Download');
-downloadLink.addEventListener('click', download, false);
+var downloadLink = document.getElementById("Download");
+downloadLink.addEventListener("click", download, false);

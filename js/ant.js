@@ -20,7 +20,17 @@ function turnright(d)
 
 function turnleft(d)
 {
-	return turnright(turnright(turnright(d)));
+	switch(d)
+	{
+	case 'u':
+		return 'l';
+	case 'd':
+		return 'r';
+	case 'r':
+		return 'u';
+	case 'l':
+		return 'd';
+	}
 }
 
 
@@ -29,7 +39,7 @@ function setup()
 	frameRate(100);
 	createCanvas(500, 500);
 	antPos = [width/2, height/2];
-	
+
 	for (var i = 0; i < height; i++)
 	{
 		cells.push([]);
@@ -75,27 +85,32 @@ function draw()
 {
 	if (!running)
 		return;
-	
-	for (var i = 0; i < parseInt(document.getElementById("speed").value); i++)
+
+	var speed = parseInt($("#speed").val());
+
+	if (isNaN(speed))
+		speed = 0;
+
+	for (var i = 0; i < speed; i++)
 	{
-		
+
 		if (antPos[0] < 0 || antPos[0] >= width || antPos[1] < 0 || antPos[1] >= height)
 		{
 			running = false;
 		}
-		
+
 		if (!running)
 			return;
-	
+
 		if (cells[antPos[1]][antPos[0]] == 1)
 			direction = turnright(direction);
 		else
 			direction = turnleft(direction);
-	
-	
+
+
 		cells[antPos[1]][antPos[0]] = 1-cells[antPos[1]][antPos[0]];
 		drawCell(antPos[0], antPos[1]);
-	
+
 		if (direction == 'u')
 			antPos[1]--;
 		else if (direction == 'l')
@@ -104,13 +119,13 @@ function draw()
 			antPos[1]++;
 		else if (direction == 'r')
 			antPos[0]++;
-	
+
 		stroke(255, 0, 0);
 		point(antPos[0], antPos[1]);
 	}
 }
 
-function mouseDragged() 
+function mouseDragged()
 {
 	if (mouseX < 0 || mouseX >= width || mouseY < 0 || mouseY >= height)
 		return;

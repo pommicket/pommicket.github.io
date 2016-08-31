@@ -11,10 +11,17 @@
         <div id="navbar"></div>
         <script src="navbar.js"></script>
         <h2>Modular Pascal's Triangle</h2>
-        <p>A picture of Pascal's triangle mod x. This program might be a bit slow.</p>
+        <p>A picture of Pascal's triangle mod x.</p>
 
         <script src="js/modularpascal.js"></script>
-        x: <input min="1" value="2" type="number" id="mod"><br><br>
+        <div class="container-fluid with-margin">
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">x</span>
+                    <input id="mod" class="form-control" type="number" value="2">
+                </div>
+            </div>
+        </div>
         <button class="btn btn-sm btn-primary" onclick="updateTriangle();">Update</button><br>
     </body>
 </html>

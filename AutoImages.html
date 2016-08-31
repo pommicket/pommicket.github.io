@@ -14,46 +14,85 @@
         <script src="navbar.js"></script>
 
         <h2>AutoImages</h2>
-        <p>AutoImages is a program that creates computer generated images.<br>
-        For an explanation of AutoImages, go <a href="explanation.html">here</a><br>
-        First click the create button then the download button.<br>
-        If the download button doesn't work, just right click on the image then click "Save image as...".
-        Change X and Y to change the resolution of the image.<br>
-        After you click create, wait until the image shows, then click "Download".</p>
+        <div class="container-fluid">
+            <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12" id="explanation">
+                AutoImages is a program that creates computer generated images.
+                An explanation of AutoImages can be found <a href="explanation.html">here</a>.
+                If the download button doesn't work, just right click on the image then click "Save image as...".
+            </div>
+        </div>
+
 
         <br>
         <button onclick="start();" type="button" id="Create" class="btn btn-success">Create</button>
         <br><br>
 
-        <form id='Options'>
-        <fieldset>
         <legend>Options</legend>
-        X: <input type="number" name="xinput" value="1000">
+        <div class="container-fluid">
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Width</span>
+                    <input id="width" class="form-control" type="number" value="1000">
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Height</span>
+                    <input id="height" class="form-control" type="number" value="500">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">
+                        <input id="notify" class="checkbox" type="checkbox">
+                    </span>
+                    <span class="form-control">Notify me when it finishes.</span>
+                </div>
+            </div>
+        </div>
         <br>
-        Y: <input type="number" name="yinput" value="500"><br>
-        <input type='checkbox'> Notify me when it finishes.
-        </fieldset>
-        <fieldset>
         <legend>Advanced Options</legend>
-        Single operator weight: <input type='number' value='1'><br>
-        Number weight: <input type='number' value='1'><br>
-        Function length: <input type='number' value='60'><br>
-        </fieldset>
-        </form>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Single operator weight</span>
+                    <input id="single" class="form-control" type="number" value="1">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Number weight</span>
+                    <input id="number" class="form-control" type="number" value="1">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Function length</span>
+                    <input id="flength" class="form-control" type="number" value="60">
+                </div>
+            </div>
+            <br>
+        </div>
 
-        <p id='Error'></p>
 
-        <p id='Time'></p>
+        <p class="text-danger" id="Error"></p>
 
-        <a id='Download' href="" download='AutoImage.png'></a>
+        <p id="Time"></p>
+
+        <a id="Download" href="" download="AutoImage.png"></a>
 
         <br>
 
-        <canvas id='Canvas' width=0 height=0></canvas>
+        <canvas id="Canvas" width="0" height="0"></canvas>
 
         <br><br>
 
-        <div id='Function' lang='latex'></div>
+        <div id="Function" lang="latex"></div>
 
         <script src="js/AutoImages.js"></script>
 
@@ -63,6 +102,6 @@
 
     </body>
     <footer>
-        <p>AutoArt is licensed under the <a href='LICENSE.txt'>GNU General public license</a>.</p>
+        <p>AutoArt is licensed under the <a href="LICENSE.txt">GNU General public license</a>.</p>
     </footer>
 </html>

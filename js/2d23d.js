@@ -29,7 +29,7 @@ function draw()
 	if (waiting)
 	{
 		iterations++;
-		
+
 		if (iterations > 150)
 		{
 			iterations = 0;
@@ -39,45 +39,45 @@ function draw()
 		}
 		return;
 	}
-	var ca = cos(angle) * radius + radius + 50;
-	var sa = sin(angle) * radius + radius + 50;
-	
+	var x  = cos(angle) * radius + radius + 50;
+	var y  = sin(angle) * radius + radius + 50;
+
 	angle += 0.1/6;
-	
+
 	if (angle > TWO_PI)
 		rotations++;
-			
+
 	checkRotations();
-	
+
 	angle %= TWO_PI;
-	
+
 	if (state == 0)
-		ellipse(ca, sa, 50, 50);
-	
+		ellipse(x, y, 50, 50);
+
 	else if (state == 1)
-		rect(ca, sa, 50, 50);
+		rect(x, y, 50, 50);
 
 	else if (state == 2)
-		triangle(ca, sa, ca+50, sa, ca, sa+50);
+		triangle(x, y, x+50, y, x, y+50);
 
-	
+
 	else if (state == 3)
-		triangle(ca, sa, ca+25, sa+25, ca, sa+50);
+		triangle(x, y, x+25, y+25, x, y+50);
 
-	
+
 	else if (state == 4)
-		ellipse(ca, sa, 100, 50);
+		ellipse(x, y, 100, 50);
 
-	
+
 	else if (state == 5)
-		line(ca, sa, ca+50, sa);
+		line(x, y, x+50, y);
 
-	
+
 	else if (state == 6)
-		line(ca, sa, ca, sa+50);
+		line(x, y, x, y+50);
 
 	else if (state >= 7)
-		arc(ca, sa, 50, 50, 0, (HALF_PI + state) % TWO_PI);
+		arc(x, y, 50, 50, 0, (HALF_PI + state) % TWO_PI);
 
-	
+
 }

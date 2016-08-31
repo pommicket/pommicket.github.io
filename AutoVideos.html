@@ -16,48 +16,94 @@
         <script src="navbar.js"></script>
 
         <h2>AutoVideos</h2>
-        <p>AutoVideos is a program that creates computer generated videos.<br>
-        For an explanation of AutoVideos, go <a href="explanation.html">here</a>
-        First click the create button then the download button.<br>
-        If the download button doesn't work, just right click on the image then click "Save image as...".
-        Change X and Y to change the resolution of the image.<br>
-        After you click create, wait until the image shows, then click "Download".</p>
+        <div class="container-fluid">
+            <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12" id="explanation">
+                AutoVideos is a program that creates computer generated videos.
+                An explanation of AutoVideos can be found <a href="explanation.html">here</a>.
+                To download the video, right click on the play button, and click "Save video as...". Name it
+                something.webm
+            </div>
+        </div>
 
 
 
-        <form id='Options'>
-        <fieldset>
         <legend>Options</legend>
-        X: <input type="number" name="xinput" value="426">
-        <br>
-        Y: <input type="number" name="yinput" value="240">
-        <br>
-        Length: <input type='number' name='leninput' value='4'>
-        <br>
-        Frame rate: <input type='number' name='frinput' value='12'><br>
-        <input type='checkbox'> Notify me when it finishes.
-        </fieldset>
-        <br>
-        <fieldset>
-        <legend>Advanced Options</legend>
-        Single operation weight: <input type='number' value='1'><br>
-        Number weight: <input type='number' value='1'><br>
-        Function length: <input type='number' value='60'><br>
-        </fieldset>
-        </form>
+        <div class="container-fluid">
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Width</span>
+                    <input id="width" class="form-control" type="number" value="426">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Height</span>
+                    <input id="height" class="form-control" type="number" value="240">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Length</span>
+                    <input id="length" class="form-control" type="number" value="4">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Frame rate</span>
+                    <input id="framerate" class="form-control" type="number" value="12">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">
+                        <input id="notify" class="checkbox" type="checkbox">
+                    </span>
+                    <span class="form-control">Notify me when it finishes.</span>
+                </div>
+            </div>
+            <br>
+        </div>
 
+        <legend>Advanced Options</legend>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Single operator weight</span>
+                    <input id="single" class="form-control" type="number" value="1">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Number weight</span>
+                    <input id="number" class="form-control" type="number" value="1">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Function length</span>
+                    <input id="flength" class="form-control" type="number" value="60">
+                </div>
+            </div>
+            <br>
+        </div>
         <br>
-        <button onclick="start();" type='button' id='Create' class="btn btn-success">Create</button>
+        <button onclick="start();" type="button" id="Create" class="btn btn-success">Create</button>
         <br><br>
 
-        <p id='Time'></p>
+        <p id="Time"></p>
 
-        <p id='Error'></p>
+        <p class="text-danger" id="Error"></p><br>
 
-        <video width=0 height=0 id='Video' controls></video><br><br>
-        <canvas id='Canvas' width=0 height=0></canvas>
+        <video width=0 height=0 id="Video" controls></video><br><br>
+        <canvas id="Canvas" width=0 height=0></canvas>
 
-        <div id='Function' lang='latex'></div>
+        <div id="Function" lang="latex"></div>
 
         <script src="https://antimatter15.com/whammy/whammy.js"></script>
         <script src="js/AutoVideos.js"></script>
@@ -69,6 +115,6 @@
     </body>
 
     <footer>
-        <p>AutoArt is licensed under the <a href='LICENSE.txt'>GNU General public license</a>.</p>
+        <p>AutoArt is licensed under the <a href="LICENSE.txt">GNU General public license</a>.</p>
     </footer>
 </html>

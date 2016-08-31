@@ -14,13 +14,23 @@
 	<div id="loading">Loading word list...</div>
 	<div id="word"></div>
 	<div id="hidden" style="visibility: hidden;">
-	  <input type="text" id="guess" onKeyDown="if(event.keyCode==13) submit();">
-	  <button onclick="submit();">Submit guess</button>
-	  <button onclick="giveUp();">Give up?</button>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <input class="form-control input-lg" type="text" id="guess" onKeyDown="if(event.keyCode==13) submit();">
+                    <span class="input-group-addon">
+                        <button class="btn btn-sm btn-primary" onclick="submit();">Submit guess</button>
+                    </span>
+                    <span class="input-group-addon">
+                        <button class="btn btn-sm btn-danger" onclick="giveUp();">Give up?</button>
+                    </span>
+                </div>
+            </div>
+        </div>
 
 	</div>
 	<div id="answer"></div>
-	<button id="again" style="visibility: hidden;" onclick="play();">Play again</button>
+	<button id="again" class="btn btn-sm btn-primary" style="visibility: hidden;" onclick="play();">Play again</button>
 	<script src="js/anagramgame.js"></script>
   </body>
 

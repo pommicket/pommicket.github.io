@@ -9,7 +9,7 @@ numlist = numlist.concat(varlist);
 var numberweights = {"Constant":1};
 var numberweight;
 var singleweight;
-var eqlength;
+var flength;
 var notify;
 
 for(var i = 0; i < single.length; i++)
@@ -30,10 +30,10 @@ for(var i = 0; i < varlist.length; i++)
 function rmvmath(str)
 {
 	//A function that removes all the Math.'s in a string
-	var newstr = '';
+	var newstr = "";
 	for(var i = 0; i < str.length - 5; i++)
 	{
-		if(str[i] + str[i+1] + str[i+2] + str[i+3] + str[i+4] !== 'Math.')
+		if(str[i] + str[i+1] + str[i+2] + str[i+3] + str[i+4] !== "Math.")
 		{
 			newstr += str[i]
 		}
@@ -64,12 +64,12 @@ function countChar(string, letter)
 }
 
 
-function randEquation()
+function randFunction()
 {
 	var hasx = false;
     var hasy = false;
 	var hast = false;
-	var equation;
+	var func;
 	var lasttype;
 	var thistype;
 	var chanceend;
@@ -81,8 +81,8 @@ function randEquation()
     while (!(hasx && hasy && hast))
 	{
         //Types: b for binary, s for single, f for first, n for number
-        equation = '';
-        lasttype = 'f';
+        func = "";
+        lasttype = "f";
         thistype = 0;
         hasx = false;
         hasy = false;
@@ -92,148 +92,131 @@ function randEquation()
 
         while (true)
 		{
-            chanceend = Math.pow((1.0 - (1.0 / length)), eqlength);
-            if (lasttype == 'n')
+            chanceend = Math.pow((1.0 - (1.0 / length)), flength);
+            if (lasttype == "n")
 			{
                 number = Math.random();
                 if (number < chanceend)
 				{
                     break;
 				}
-                equation = '(' + equation + ')' + randItem(binary);
-                lasttype = 'b';
+                func = "(" + func + ")" + randItem(binary);
+                lasttype = "b";
 			}
-            else if (lasttype == 's' || lasttype == 'b' || lasttype == 'f')
+            else if (lasttype == "s" || lasttype == "b" || lasttype == "f")
 			{
-                equation += '(';
+                func += "(";
                 thistype = Math.random();
                 if (thistype < singleweight / (singleweight + numberweight))
 				{
-                    equation += randItem(single);
-                    lasttype = 's';
+                    func += randItem(single);
+                    lasttype = "s";
 				}
                 else
 				{
                     what = randItem(numlist);
-                    if (what == 'Constant')
+                    if (what == "Constant")
 					{
-                        equation += (Math.random(100, 200)).toString();
+                        func += (Math.random(100, 200)).toString();
 					}
                     else
 					{
-                        equation += what;
-                        if (what == 'x')
+                        func += what;
+                        if (what == "x")
 						{
                             hasx = true;
 						}
-                        else if (what == 'y')
+                        else if (what == "y")
 						{
                             hasy = true;
 						}
-						else if (what == 't')
+						else if (what == "t")
 						{
 							hast = true;
 						}
 					}
-                    lasttype = 'n';
-                    equation += ')';
+                    lasttype = "n";
+                    func += ")";
 				}
 			}
             length++;
 		}
 	}
-    while (countChar(equation, '(') > countChar(equation, ')'))
+    while (countChar(func, "(") > countChar(func, ")"))
 	{
-        equation += ')';
+        func += ")";
 	}
-    return equation;
-}
-
-function evalEquation(eq, x, y, t)
-{
-	try
-	{
-		eval('var result = ' + eq);
-		return result;
-	}
-	catch(err)
-	{
-		return 0;
-	}
+    return func;
 }
 
 function create()
 {
 	var d = new Date();
 	var start = d.getTime();
-	var xsize;
-	var ysize;
+	var width;
+	var height;
 	var length;
 	var framerate;
 
-	var form = document.getElementById('Options');
+	$("#Error").html("");
 
-	var errtag = document.getElementById('Error');
-	errtag.innerHTML = '';
+	width = parseInt($("#width").val());
+	height = parseInt($("#height").val());
+	length = parseFloat($("#length").val());
+	framerate = parseInt($("#framerate").val());
+	notify = $("#notify").prop("checked");
 
-	for (var i = 0; i < form.elements.length; i++)
+	singleweight = parseFloat($("#single").val());
+	numberweight = parseFloat($("#number").val());
+	flength = parseFloat($("#flength").val());
+
+	if (isNaN(width) || isNaN(height) || isNaN(length) || isNaN(framerate) || isNaN(singleweight) || isNaN(numberweight) || isNaN(flength))
 	{
-		if (form.elements[i].value == '')
-		{
-			errtag.innerHTML = 'Please enter a valid number.';
-			return;
-		}
+		stopLoading();
+		$("#Error").html("Please enter a valid number.");
+		return;
 	}
 
-	xsize = parseInt(form.elements[1].value);
-	ysize = parseInt(form.elements[2].value);
-	length = parseFloat(form.elements[3].value);
-	framerate = parseInt(form.elements[4].value);
-	notify = form.elements[5].checked;
-
-	singleweight = parseFloat(form.elements[7].value);
-	numberweight = parseFloat(form.elements[8].value);
-	eqlength = parseFloat(form.elements[9].value);
-
-	var requation = randEquation();
-	var gequation = randEquation();
-	var bequation = randEquation();
+	var rfunction = randFunction();
+	var gfunction = randFunction();
+	var bfunction = randFunction();
+	console.log("1Hi");
 	var x;
 	var y;
 	var r;
 	var g;
 	var b;
 	var encoder = new Whammy.Video(framerate);
-	var video = document.getElementById('Video');
-	var canvas = document.getElementById('Canvas');
-	video.width = xsize;
-	video.height = ysize;
-	canvas.width = xsize;
-	canvas.height = ysize;
-	var ctx = canvas.getContext('2d');
-	var apx = ctx.getImageData(0, 0, xsize, ysize);
+	var video = document.getElementById("Video");
+	var canvas = document.getElementById("Canvas");
+	video.width = width;
+	video.height = height;
+	canvas.width = width;
+	canvas.height = height;
+	var ctx = canvas.getContext("2d");
+	var apx = ctx.getImageData(0, 0, width, height);
 	var data = apx.data;
 
 
 	eval(
-	'for(var t = 0; t < Math.round(framerate * length); t++)'+
-	'{'+
-	'	for(var i = 0; i < data.length; i+=4)'+
-	'	{'+
-	'		x = (i/4) % xsize;'+
-	'		y = Math.floor((i/4) / xsize);'+
-	'		r = Math.abs(Math.round((' + requation + ') % 255));'+
-	'		g = Math.abs(Math.round((' + gequation + ') % 255));'+
-	'		b = Math.abs(Math.round((' + bequation + ') % 255));'+
-	'		data[i] = r;'+
-	'		data[i+1] = g;'+
-	'		data[i+2] = b;'+
-	'		data[i+3] = 255;'+
-	'	}'+
-	'	apx.data = data;'+
-	'	ctx.putImageData(apx, 0, 0);'+
-	'	encoder.add(ctx);'+
-	'}'
+	"for(var t = 0; t < Math.round(framerate * length); t++)"+
+	"{"+
+	"	for(var i = 0; i < data.length; i+=4)"+
+	"	{"+
+	"		x = (i/4) % width;"+
+	"		y = Math.floor((i/4) / width);"+
+	"		r = Math.abs(Math.round((" + rfunction + ") % 255));"+
+	"		g = Math.abs(Math.round((" + gfunction + ") % 255));"+
+	"		b = Math.abs(Math.round((" + bfunction + ") % 255));"+
+	"		data[i] = r;"+
+	"		data[i+1] = g;"+
+	"		data[i+2] = b;"+
+	"		data[i+3] = 255;"+
+	"	}"+
+	"	apx.data = data;"+
+	"	ctx.putImageData(apx, 0, 0);"+
+	"	encoder.add(ctx);"+
+	"}"
 	);
 	var output = encoder.compile();
 	var url = webkitURL.createObjectURL(output);
@@ -246,36 +229,37 @@ function create()
 	var timetaken = Math.round((end-start)/1000);
 	if (timetaken == 1)
 	{
-		$("#Time").html('The time it took was 1 second.');
+		$("#Time").html("The time it took was 1 second.");
 	}
 	else
 	{
-		$("#Time").html('The time it took was ' + timetaken + ' seconds.');
+		$("#Time").html("The time it took was " + timetaken + " seconds.");
 	}
 
-	$("#Function").html('$Functions: \\newline\\newline Red: $' + rmvmath(requation) + '$\\newline\\newline Green: $' + rmvmath(gequation) + '$\\newline\\newline Blue: $' + rmvmath(bequation) + '$');
-	LatexIT.render('*',false);
+	$("#Function").html("$Functions: \\newline\\newline Red: $" + rmvmath(rfunction) + "$\\newline\\newline Green: $" + rmvmath(gfunction) + "$\\newline\\newline Blue: $" + rmvmath(bfunction) + "$");
+	LatexIT.render("*",false);
 
 	stopLoading();
 
-	if(notify)
+	if (notify)
 	{
-		alert('Your video has finished.');
+		alert("Your video has finished.");
 	}
 
+	stopLoading();
 
 }
 
 function startLoading()
 {
-	$('#Create').prop('disabled', true);
-	$('#Create').html('Loading...');
+	$("#Create").prop("disabled", true);
+	$("#Create").html("Loading...");
 }
 
 function stopLoading()
 {
-	$('#Create').prop('disabled', false);
-	$('#Create').html('Create');
+	$("#Create").prop("disabled", false);
+	$("#Create").html("Create");
 }
 
 function start()

@@ -14,42 +14,69 @@
         <script src="navbar.js"></script>
         <h2>AutoAudio</h2>
 
-
-        <p>AutoAudio is a program that creates computer generated audio.<br>
-        For an explanation of AutoAudio, go <a href="explanation.html">here</a> <br>
-        After you click "Create", please wait until the audio finishes before listening to it.
-        </p>
-
-        <p id='Error'></p>
-
-
+        <div class="container-fluid">
+            <div class="col-lg-4 col-md-6 col-sm-8 col-xs-12" id="explanation">
+                AutoAudio is a program that creates computer generated audio.
+                An explanation of AutoAudio can be found <a href="explanation.html">here</a>.
+                To download the audio, right-click on the play button, and click "Save audio as...".
+            </div>
+        </div>
 
 
-        <form id='Options'>
-        <fieldset>
         <legend>Options</legend>
-        Length: <input type="number" name="leninput" value="5"><br>
-        <input type='checkbox'> Notify me when it finishes.
-        </fieldset>
-        <fieldset>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Length</span>
+                    <input id="length" class="form-control" type="number" value="5">
+                </div>
+            </div><br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">
+                        <input id="notify" class="checkbox" type="checkbox">
+                    </span>
+                    <span class="form-control">Notify me when it finishes.</span>
+                </div>
+            </div>
+        </div><br>
         <legend>Advanced Options</legend>
-        Single operator weight: <input type='number' value='1'><br>
-        Number weight: <input type='number' value='1'><br>
-        Function length: <input type='number' value='60'><br>
-        </fieldset>
-        </form>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Single operator weight</span>
+                    <input id="single" class="form-control" type="number" value="1">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Number weight</span>
+                    <input id="number" class="form-control" type="number" value="1">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Function length</span>
+                    <input id="flength" class="form-control" type="number" value="60">
+                </div>
+            </div>
+            <br>
+        </div>
 
         <br>
-        <button onclick="start();" type='button' id="Create" class="btn btn-success">Create</button>
+        <button onclick="start();" type="button" id="Create" class="btn btn-success">Create</button>
         <br><br>
 
-        <audio id='Audio' controls></audio>
+        <audio id="Audio" controls></audio>
 
         <br><br>
 
-        <p id='Time'></p>
+        <p id="Error" class="text-danger"></p>
+        <p id="Time"></p>
 
-        <div id='Function' lang='latex'></div>
+        <div id="Function" lang="latex"></div>
 
         <script src="js/AutoAudio.js"></script>
         <noscript>
@@ -58,6 +85,6 @@
 
     </body>
     <footer>
-        <p>AutoArt is licensed under the <a href='LICENSE.txt'>GNU General public license</a>.</p>
+        <p>AutoArt is licensed under the <a href="LICENSE.txt">GNU General public license</a>.</p>
     </footer>
 </html>

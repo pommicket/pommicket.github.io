@@ -1,32 +1,11 @@
-var length;
 var single = ["Math.sqrt", "Math.cos", "Math.sin"]; //Operations on a single number
-var singleweights = {};
 var binary = ["*", "+", "-", "/"]; //Operations for 2 numbers
-var binaryweights = {};
 var varlist = ["x"];
 var numlist = ["Constant"];
 numlist = numlist.concat(varlist);
-var numberweights = {"Constant":1};
 var numberweight = 1;
 var singleweight = 1;
-var eqlength;
-var notify;
-var functionp = document.getElementById('Function');
-
-for(var i = 0; i < single.length; i++)
-{
-	singleweights[single[i]] = 1;
-}
-
-for(var i = 0; i < binary.length; i++)
-{
-	binaryweights[binary[i]] = 1;
-}
-
-for(var i = 0; i < varlist.length; i++)
-{
-	numberweights[varlist[i]] = 1;
-}
+var flength;
 
 function randItem(l)
 {
@@ -64,10 +43,10 @@ function rmvmath(str)
 	return newstr;
 }
 
-function randEquation()
+function randFunction()
 {
 	var hasx = false;
-	var equation;
+	var func;
 	var lasttype;
 	var thistype;
 	var chanceend;
@@ -79,7 +58,7 @@ function randEquation()
     while (!hasx)
 	{
         //Types: b for binary, s for single, f for first, n for number
-        equation = '';
+        func = '';
         lasttype = 'f';
         thistype = 0;
         hasx = false;
@@ -88,7 +67,7 @@ function randEquation()
 
         while (true)
 		{
-            chanceend = Math.pow((1.0 - (1.0 / length)), eqlength);
+            chanceend = Math.pow((1.0 - (1.0 / length)), flength);
             if (lasttype == 'n')
 			{
                 number = Math.random();
@@ -96,16 +75,16 @@ function randEquation()
 				{
                     break;
 				}
-                equation = '(' + equation + ')' + randItem(binary);
+                func = '(' + func + ')' + randItem(binary);
                 lasttype = 'b';
 			}
             else if (lasttype == 's' || lasttype == 'b' || lasttype == 'f')
 			{
-                equation += '(';
+                func += '(';
                 thistype = Math.random();
                 if (thistype < singleweight / (singleweight + numberweight))
 				{
-                    equation += randItem(single);
+                    func += randItem(single);
                     lasttype = 's';
 				}
                 else
@@ -113,97 +92,85 @@ function randEquation()
                     what = randItem(numlist);
                     if (what == 'Constant')
 					{
-                        equation += (Math.random()*100+100).toString();
+                        func += (Math.random()*100+100).toString();
 					}
                     else
 					{
-                        equation += what;
+                        func += what;
                         if (what == 'x')
 						{
                             hasx = true;
 						}
 					}
                     lasttype = 'n';
-                    equation += ')';
+                    func += ')';
 				}
 			}
             length++;
 		}
 	}
-    while (countChar(equation, '(') > countChar(equation, ')'))
+    while (countChar(func, '(') > countChar(func, ')'))
 	{
-        equation += ')';
+        func += ')';
 	}
-    return equation;
+    return func;
 }
 
-function evalEquation(eq, x)
-{
-	try
-	{
-		eval('var result = ' + eq);
-		return result;
-	}
-	catch(err)
-	{
-		return 0;
-	}
-}
 
 function create()
 {
+	var notify;
+	var length;
 	var date = new Date();
 	var start = date.getTime();
-	var form = document.getElementById('Options');
-	var errtag = document.getElementById('Error');
 
+	$("#Error").html("");
 
-	errtag.innerHTML = '';
-	for (var i = 0; i < form.elements.length; i++)
+	length = parseInt($("#length").val());
+	notify = $("#notify").prop("checked");
+
+	singleweight = parseFloat($("#single").val());
+	numberweight = parseFloat($("#number").val());
+	flength = parseFloat($("#flength").val());
+
+	if (isNaN(length) || isNaN(singleweight) || isNaN(numberweight) || isNaN(flength))
 	{
-		if (form.elements[i].value == '')
-		{
-			errtag.innerHTML = 'Please enter a valid number.';
-			return;
-		}
+		$("#Error").html("Please enter a valid number.");
+		stopLoading();
+		return;
 	}
-
-	length = parseInt(form.elements[1].value);
-	notify = form.elements[2].checked;
-
-	singleweight = parseFloat(form.elements[4].value);
-	numberweight = parseFloat(form.elements[5].value);
-	eqlength = parseFloat(form.elements[6].value);
 
 	var data = [];
-	var equation = randEquation();
+	var func = randFunction();
 
-	for (var i=0; i<length * 10000; i++)
-	{
-		var value = evalEquation(equation, i);
-		value %= 1;
-		data[i] = Math.abs(255 * value);
-	}
+	eval(
+	"for (var x=0; x<length * 10000; x++)"
+	+ "{"
+	+ "var value = (" + func + ") % 1;"
+	+ "data[x] = Math.abs(255 * value);"
+	+ "}");
+
 	var wave = new RIFFWAVE(data);
-	audio = document.getElementById('Audio');
+	var audio = document.getElementById('Audio');
 	audio.src = wave.dataURI;
 	date = new Date();
-	end = date.getTime();
-	var timeparagraph = document.getElementById('Time');
+	var end = date.getTime();
 	var timetaken = Math.round((end-start)/1000);
 	if (timetaken == 1)
 	{
-		timeparagraph.innerHTML = 'The time it took was 1 second.';
+		$("#Time").html("The time it took was 1 second.");
 	}
 	else
 	{
-		timeparagraph.innerHTML = 'The time it took was ' + timetaken + ' seconds.';
+		$("#Time").html("The time it took was " + timetaken + " seconds.");
 	}
 
-	functionp.innerHTML = '$Function: $' + rmvmath(equation);
+	$("#Function").html("$Function: $" + rmvmath(func));
 	LatexIT.render('*',false);
 
 	stopLoading();
+
+	$("#Audio").show();
 
 	if(notify)
 	{
@@ -233,3 +200,8 @@ function start()
 	startLoading();
 	window.setTimeout(create, 1);
 }
+
+$(function()
+{
+	$("#Audio").hide();
+});

@@ -13,10 +13,40 @@
 
         <p>Each point corresponds to a number. The points are connected based on rules.</p>
 
+        <div class="container-fluid">
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Number of points</span>
+                    <input id="npoints" class="form-control" type="number" value="300">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Add/Multiply</span>
+                    <input id="amount" class="form-control" type="number" value="2">
+                </div>
+            </div>
+            <br>
+            <div class="row with-margin">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">
+                        <input id="should_mul" class="checkbox" type="radio" value="multiply" name="muloradd" checked="true">
+                    </span>
+                    <span class="form-control">Multiply?</span>
+                </div>
+            </div>
+            <div class="row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">
+                        <input id="should_add" type="radio" value="add" name="muloradd" class="checkbox">
+                    </span>
+                    <span class="form-control">Add?</span>
+                </div>
+            </div>
+        </div>
+        <br>
+
         <script src="js/modularcircles.js"></script>
-        Number of points: <input min="1" value="300" type="number" id="npoints"><br>
-        Add/Multiply: <input value="2" step="0.2"  type="number" id="amount"><br>
-        Multiply? <input id="should_mul" type="radio" value="multiply" name="muloradd" checked="true"><br>
-        Add? <input id="should_add" type="radio" value="add" name="muloradd"><br>
     </body>
 </html>

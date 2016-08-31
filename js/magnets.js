@@ -65,7 +65,7 @@ function draw()
     safe_zone_radius *= 0.9995;
     ellipse(mouseX, mouseY, safe_zone_radius, safe_zone_radius);
 
-    if ((mouseX > width || mouseY > height) && magnets.length > 0)
+    if ((mouseX > width || mouseY > height || mouseY < 0) && magnets.length > 0)
     {
         gameOver = true;
         alert("You went out of bounds. Score: " + magnets.length);

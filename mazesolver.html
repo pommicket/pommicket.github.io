@@ -14,27 +14,35 @@
         <h2>Maze Solver</h2>
         <hr>
 
-        <p>Maze Solver is a computer program that can solve mazes.<br>
-        It works using <a href='https://www.khanacademy.org/computing/computer-science/algorithms/intro-to-algorithms/a/route-finding'>this algorithm</a>. To create a
-        maze, just left-click and drag on the screen below to create walls, middle-click to clear walls, and right-click to place start and ending locations. Then,
-        click the button saying "Solve Maze" and it will draw red circles connecting your start location to your end location.</p>
+        <div class="container-fluid">
+            <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12" id="explanation">
+                Left-click to create walls, middle-click (press the scroll wheel) to clear walls, and right-click to place start and ending locations.
+            </div>
+        </div>
+        <br>
 
-        <button onclick='startCreation();' id='StartButton'>Create Maze</button><br><br>
+        <button class="btn btn-sm btn-primary with-margin" onclick="startCreation();" id="StartButton">Create maze</button><br>
+        <button class="btn btn-sm btn-primary with-margin" onclick="begin();" id="begin">Solve maze</button><br><br>
+        <p id="Error" class="text-danger"></p>
 
-        <p id='DoesItWork' style="color:#ff0000;"></p>
+        <div class="container-fluid" id="form">
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Size</span>
+                    <input id="size" class="form-control" type="number" value="50">
+                </div>
+            </div>
+        </div><br>
 
-        <form id='Form'>
-        Size: <input type='number' value=50>
-        </form>
 
-        <canvas height=0 width=0 id='Canvas' oncontextmenu='return false;'></canvas>
+        <canvas height="500" width="500" id="Canvas" oncontextmenu="return false;"></canvas>
 
         <script src="js/mazesolver.js"></script>
 
 
     </body>
     <footer>
-        <p>MazeSolver is licensed under the <a href='LICENSE.txt'>GNU General public license</a>.</p>
+        <p>MazeSolver is licensed under the <a href="LICENSE.txt">GNU General public license</a>.</p>
     </footer>
 
 </html>

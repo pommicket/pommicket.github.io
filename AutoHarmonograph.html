@@ -10,11 +10,25 @@
     <div id="navbar"></div>
     <script src="navbar.js"></script>
     <h2>AutoHarmonograph</h2>
-
-    Number of pendulums: <input type="number" id="npendulums"><br>
-    Maximum damping: <input type="number" id="DMAX"><br>
-    <button onclick="start();">Start</button><br>
-    <button onclick="saveCanvas();">Save image</button><br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                <span class="input-group-addon">Number of pendulums</span>
+                <input type="number" class="form-control" value="10" id="npendulums">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                <span class="input-group-addon">Maximum damping</span>
+                <input type="number" class="form-control" value="0.0003" id="DMAX">
+            </div>
+        </div>
+    </div>
+    <br>
+    <button class="btn btn-sm btn-primary with-margin" id="start" onclick="start();">Start</button><br>
+    <button class="btn btn-sm btn-primary with-margin" onclick="saveCanvas();">Save image</button><br>
+    <div id="Error" class="text-danger"></div>
     <script src="js/AutoHarmonograph.js"></script>
 </body>
 </html>

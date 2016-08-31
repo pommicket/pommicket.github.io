@@ -10,12 +10,19 @@
         <div id="navbar"></div>
         <script src="navbar.js"></script>
         <h2>Langton's Ant</h2>
-
-        <button onclick="start();">Start</button><br>
-        <button onclick="stop();">Stop</button><br>
-        <button onclick="clearCells();">Clear</button><br>
-        <button onclick="resetPos();">Reset ant position</button><br>
-        <div>Speed: <input type="number" id="speed" value=1></div>
+        <hr>
+        <button class="btn btn-sm btn-primary with-margin" onclick="start();">Start</button><br>
+        <button class="btn btn-sm btn-primary with-margin" onclick="stop();">Stop</button><br>
+        <button class="btn btn-sm btn-primary with-margin" onclick="clearCells();">Clear</button><br>
+        <button class="btn btn-sm btn-primary with-margin" onclick="resetPos();">Reset ant position</button><br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Speed</span>
+                    <input id="speed" class="form-control" type="number" value="10">
+                </div>
+            </div>
+        </div>
 
         <script src="js/ant.js"></script>
     </body>

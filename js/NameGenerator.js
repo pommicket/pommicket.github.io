@@ -5,19 +5,19 @@ var sumStartsWith = {};
 
 function loadTrigrams(responseText)
 {
-	var lines = responseText.split('\n');
+	var lines = responseText.split("\n");
 	for (var i = 0; i < lines.length; i++)
 	{
 		var trigram = lines[i].substring(0, 3);
 		var value = parseInt(lines[i].substring(4, lines[i].length));
-		if (trigram == '' || isNaN(value))
+		if (trigram == "" || isNaN(value))
 			continue;
 		trigrams[trigram] = value;
 	}
 
 	trigramKeyList = Object.keys(trigrams);
 
-	document.getElementById("loading").innerHTML = "";
+	$("#loading").html("");
 }
 
 function start()
@@ -43,7 +43,7 @@ function pickFirst2()
 
 	for (var i = 0; i < trigramKeyList.length; i++)
 	{
-		if (trigramKeyList[i][0] == ' ')
+		if (trigramKeyList[i][0] == " ")
 		{
 			sum += trigrams[trigramKeyList[i]];
 		}
@@ -54,7 +54,7 @@ function pickFirst2()
 
 	for (var i = 0; i < trigramKeyList.length; i++)
 	{
-		if (trigramKeyList[i][0] == ' ')
+		if (trigramKeyList[i][0] == " ")
 		{
 			count += trigrams[trigramKeyList[i]];
 			if (selected < count)
@@ -103,14 +103,14 @@ function generateName()
 {
 	var first = pickFirst2();
 	var name = first;
-	var next = '';
+	var next = "";
 	var length = 0;
 	do
 	{
 		name += next;
 		next = nextChar(name);
 	}
-	while (next != ' ');
+	while (next != " ");
 
 	name = name[0].toUpperCase() + name.substring(1);
 
@@ -121,41 +121,36 @@ function generateName()
 
 function createNames()
 {
-	var nameStr = '';
-	var numNames = document.getElementById("numNames").value;
-	var nameDiv = document.getElementById("names");
+	var nameStr = "";
+	var numNames = $("#numNames").val();
 
-	window.setTimeout(50, function() {document.getElementById("loading").innerHTML = "Loading...";});
-
-	nameDiv.innerHTML = "";
+	$("#names").html();
 
 	for (var i = 0; i < numNames; i++)
 		nameStr += generateName() + "<br>";
 
-	if (document.getElementById("outputNames").checked)
-		nameDiv.innerHTML = nameStr;
+	if ($("#outputNames").prop("checked"))
+		$("#names").html(nameStr);
 
-	document.getElementById("loading").innerHTML = "";
+	$("#loading").html("");
 
-	var dload;
-	dload = document.getElementById("download");
-	dload.innerHTML = "Download names (.txt)";
+	$("#download").html("Download names (.txt)");
 	var txt = nameStr.replace(/<br>/g, "\n");
-	dload.href = "data:text/plain;charset=utf-8," + encodeURI(txt);
+	$("#download").prop("href", "data:text/plain;charset=utf-8," + encodeURI(txt));
 
 	stopLoading();
 }
 
 function startLoading()
 {
-	$('#button').prop('disabled', true);
-	$('#button').html('Loading...');
+	$("#button").prop("disabled", true);
+	$("#button").html("Loading...");
 }
 
 function stopLoading()
 {
-	$('#button').prop('disabled', false);
-	$('#button').html('Create Names!');
+	$("#button").prop("disabled", false);
+	$("#button").html("Create Names!");
 }
 
 
