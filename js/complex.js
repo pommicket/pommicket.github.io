@@ -282,6 +282,12 @@ complex.rpn = function (s)
             case "pi":
                 stack.push(complex.PI);
                 break;
+            case "r":
+                stack.push(complex.reToC(complex.abs(stack.pop())));
+                break;
+            case "theta":
+                stack.push(complex.reToC(complex.theta(stack.pop())));
+                break;
             default:
                 if (token[token.length-1] == "i")
                 {
