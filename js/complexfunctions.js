@@ -11,7 +11,7 @@ function drawPoints(points)
     background(255);
     for (var i = 0; i < points.length; i++)
     {
-        point((points[i][0]/(SCALE*width/750)+0.5)*width, (points[i][1]/(SCALE*width/750)+0.5)*height);
+        point((points[i][0]/(SCALE*width/750)+0.5)*width, (points[i][1]/(SCALE*width/750)+0.5*height/width)*width);
     }
 }
 
@@ -23,7 +23,7 @@ function drawManyPoints(points)
         stroke(colors[f][0], colors[f][1], colors[f][2]);
         for (var i = 0; i < points[f].length; i++)
         {
-            point((points[f][i][0]/(SCALE*width/750)+0.5)*width, (points[f][i][1]/(SCALE*width/750)+0.5)*height);
+            point((points[f][i][0]/(SCALE*width/750)+0.5)*width, (points[f][i][1]/(SCALE*width/750)+0.5*height/width)*width);
         }
     }
 }
@@ -87,14 +87,14 @@ function makeCanvas(w, h)
     {
         for (var j = 0; j < height; j++)
         {
-            domainPoints.push([(i/width-0.5)*SCALE*width/750, (j/height-0.5)*SCALE*width/750]);
+            domainPoints.push([(i/width-0.5)*SCALE*width/750, (j/width-0.5*height/width)*SCALE*width/750]);
         }
     }
     for (var i = 10; i < height; i += 50)
     {
         for (var j = 0; j < width; j++)
         {
-            domainPoints.push([(j/width-0.5)*SCALE*width/750, (i/height-0.5)*SCALE*width/750]);
+            domainPoints.push([(j/width-0.5)*SCALE*width/750, (i/width-0.5*height/width)*SCALE*width/750]);
         }
     }
     drawPoints(domainPoints);
