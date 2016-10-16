@@ -94,8 +94,8 @@ function calculate()
 	+ "<table class='table table-bordered table-hover'> <tr><th></th><th>Your approximation</th><th>True value</th></tr><tr><td>2π</td><td>" + 2 * avgPi
 	+ "</td><td>" + TWO_PI + "</td></tr><tr><td>π</td><td>" +
 	+ avgPi + "</td><td>" + PI + "</table>" + percentError + "% error.<br>"
-	+ "The blue dot is the center of your shape. The green line is the average radius of the shape.<br>"
-	+ "The red circle is a circle with the same radius as your shape, and the orange circle is a<br>"
-	+ "circle with the same circumference as your shape. The closer they are, the better your<br>"
-	+ "approximation of π</div>");
+	+ "The blue dot is the center of your shape. The green line is the average radius of the shape. "
+	+ "The red circle is a circle with the same radius as your shape, and the orange circle is a "
+	+ "circle with the same circumference as your shape. The closer they are, the better your "
+	+ "approximation of π.</div>");
 }
