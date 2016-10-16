@@ -3,30 +3,52 @@ var rangePoints;
 var animating = false;
 var t = 0;
 var SCALE = 5;
+var nFunctions;
+var colors;
 
 function drawPoints(points)
 {
     background(255);
     for (var i = 0; i < points.length; i++)
     {
-        point((points[i][0]/SCALE+0.5)*width, (points[i][1]/SCALE+0.5)*height);
+        point((points[i][0]/(SCALE*width/750)+0.5)*width, (points[i][1]/(SCALE*height/750)+0.5)*height);
     }
 }
 
-
-function mapFunc(func)
+function drawManyPoints(points)
 {
-    var f = complex.rpn(func);
-    rangePoints = [];
-    for (var i = 0; i < domainPoints.length; i++)
+    background(255);
+    for (var f = 0; f < nFunctions; f++)
     {
-        rangePoints.push(f(domainPoints[i]));
+        stroke(colors[f][0], colors[f][1], colors[f][2]);
+        for (var i = 0; i < points[f].length; i++)
+        {
+            point((points[f][i][0]/SCALE+0.5)*width, (points[f][i][1]/SCALE+0.5)*height);
+        }
     }
 }
 
-function drawFunc(func)
+
+function mapFuncs(funcs)
 {
-    mapFunc(func);
+    var fs = funcs.map(complex.rpn);
+    rangePoints = [];
+    var f;
+    for (var i = 0; i < funcs.length; i++)
+    {
+        rangePoints.push([]);
+        f = fs[i];
+        for (var j = 0; j < domainPoints.length; j++)
+        {
+            rangePoints[i].push(f(domainPoints[j]));
+        }
+    }
+    nFunctions = fs.length;
+}
+
+function drawFuncs(funcs)
+{
+    mapFuncs(funcs);
     animating = true;
 }
 
@@ -36,49 +58,57 @@ function draw()
     if (animating)
     {
         var midpoints = [];
-        for (var i = 0; i < domainPoints.length; i++)
-            midpoints.push(complex.add(complex.mult(domainPoints[i], complex.reToC(1-t)), complex.mult(rangePoints[i], complex.reToC(t))));
-
-        drawPoints(midpoints);
+        for (var f = 0; f < nFunctions; f++)
+        {
+            midpoints.push([]);
+            for (var i = 0; i < domainPoints.length; i++)
+                midpoints[f].push(complex.add(complex.mult(domainPoints[i], complex.reToC(1-t)), complex.mult(rangePoints[f][i], complex.reToC(t))));
+        }
+        drawManyPoints(midpoints);
 
         t += 0.01;
         if (t >= 1)
         {
             animating = false;
-            drawPoints(rangePoints);
+            drawManyPoints(rangePoints);
         }
 
 
     }
 }
 
-function setup()
+function makeCanvas(w, h)
 {
-    var canvas = createCanvas(750, 750);
+    $("#canvas").html();
+    var canvas = createCanvas(w, h);
     canvas.parent("canvas");
-    stroke(0,0,100);
     domainPoints = [];
     for (var i = 10; i < width; i += 50)
     {
         for (var j = 0; j < height; j++)
         {
-            domainPoints.push([(j/width-0.5)*SCALE, (i/height-0.5)*SCALE]);
-            domainPoints.push([(i/width-0.5)*SCALE, (j/height-0.5)*SCALE]);
+            domainPoints.push([(j/width-0.5)*SCALE*width/750, (i/height-0.5)*SCALE*height/750]);
+            domainPoints.push([(i/width-0.5)*SCALE*width/750, (j/height-0.5)*SCALE*height/750]);
         }
     }
     drawPoints(domainPoints);
 }
 
+
 $(function()
 {
     $("#animate").click(function()
     {
+        makeCanvas(parseInt($("#width").val()), parseInt($("#height").val()));
         t = 0;
         animating = false;
-        var func = $("#function").val();
-        drawFunc(func);
+        var funcs = $("#function").val().split(",");
+        colors = [];
+        for (var i = 0; i < funcs.length; i++)
+            colors.push([Math.random() * 255, Math.random() * 255, Math.random() * 255]);
+        drawFuncs(funcs);
     });
-    $("#function").keydown(function(e)
+    $(".form-control").keydown(function(e)
     {
         if (e.keyCode == 13)
             $("#animate").click();

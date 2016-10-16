@@ -203,6 +203,8 @@ complex.rpn = function (s)
             token = tokens[i];
             switch (token)
             {
+            case "":
+                break;
             case "+":
                 stack.push(complex.add(stack.pop(), stack.pop()));
                 break;
@@ -224,8 +226,16 @@ complex.rpn = function (s)
                 var val1 = stack.pop();
                 stack.push(complex.pow(val1, val2));
                 break;
+            case "log":
+                var val2 = stack.pop();
+                var val1 = stack.pop();
+                stack.push(complex.log(val1, val2));
+                break;
             case "sqrt":
                 stack.push(complex.sqrt(stack.pop()));
+                break;
+            case "ln":
+                stack.push(complex.ln(stack.pop()));
                 break;
             case "exp":
                 stack.push(complex.exp(stack.pop()));
@@ -259,6 +269,9 @@ complex.rpn = function (s)
                 break;
             case "i":
                 stack.push(complex.i);
+                break;
+            case "-i":
+                stack.push(complex.neg(complex.i));
                 break;
             case "e":
                 stack.push(complex.E);

@@ -9,7 +9,6 @@ Graph complex functions (C->C)
         <link rel="shortcut icon" type="image/png" href="favicon.png">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
-        <script src="http://www.numericjs.com/lib/numeric-1.2.6.min.js"></script>
         <script src="js/complex.js"></script>
         <script src="js/complexfunctions.js"></script>
         <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -39,6 +38,20 @@ Graph complex functions (C->C)
                 </div>
             </div>
             <br>
+            <div class="container-fluid row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Width</span>
+                    <input id="width" class="form-control" type="number" value="750">
+                </div>
+            </div>
+            <br>
+            <div class="container-fluid row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Height</span>
+                    <input id="height" class="form-control" type="number" value="750">
+                </div>
+            </div>
+            <br>
             <button id="animate" class="btn btn-default">Animate</button>
             <div id="canvas"></div>
         </div>
@@ -56,6 +69,7 @@ Graph complex functions (C->C)
                 Postfix notation looks like this:
                     $$a\ b + c \sin +$$
                 For a more simple example, $a + b$ would be $a\ b\ +$, and $\sin x$ would be $x \sin$.
+                You can plot multiple functions by separating them with commas, but it will be slow.
                 <h3>List of all functions and constants</h3>
                 <table class='table table-bordered table-hover'>
                     <tr><th>Function or constant</th> <th>What it means</th></tr>
@@ -77,6 +91,8 @@ Graph complex functions (C->C)
                     <tr><td>sin</td> <td>Sine</td></tr>
                     <tr><td>cos</td> <td>Cosine</td></tr>
                     <tr><td>tan</td> <td>Tangent</td></tr>
+                    <tr><td>ln</td> <td>Natural logarithm ($\log_e x$)</td></tr>
+                    <tr><td>log</td> <td>Logarithm ($\log_a b$)</td></tr>
                     <tr><td>sinh</td> <td>Hyperbolic sine</td></tr>
                     <tr><td>cosh</td> <td>Hyperbolic cosine</td></tr>
                     <tr><td>tanh</td> <td>Hyperbolic tangent</td></tr>
