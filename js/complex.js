@@ -264,6 +264,9 @@ complex.rpn = function (s)
             case "im":
                 stack.push(complex.imC(stack.pop()));
                 break;
+            case "abs":
+                stack.push(complex.reToC(complex.abs(stack.pop())));
+                break;
             case "x":
                 stack.push(x);
                 break;
