@@ -94,20 +94,27 @@ function makeCanvas(w, h)
     drawPoints(domainPoints);
 }
 
+function randColor()
+{
+    var r = Math.random() * 255;
+    var g = Math.random() * 255;
+    var b = Math.random() * 255;
+    return (r + g + b) / 3 > 150 ? randColor() : [r, g, b];
+}
 
 $(function()
 {
     $("#animate").click(function()
     {
         makeCanvas(parseInt($("#width").val()), parseInt($("#height").val()));
-        t = 0;
+        t = $("#display").prop("checked") ? 1 : 0;
         animating = false;
         var funcs = $("#function").val().split(",");
         colors = [];
         $("#legend").html("");
         for (var i = 0; i < funcs.length; i++)
         {
-            colors.push([Math.random() * 255, Math.random() * 255, Math.random() * 255]);
+            colors.push(randColor());
             $("#legend").append("<div><span style='display: inline-block; background: rgb("
                                 + Math.floor(colors[i][0])  + ", " + Math.floor(colors[i][1]) + ", " + Math.floor(colors[i][2])
                                 + "); width: 10px; height: 10px;'></span> " + funcs[i] + "</div>");
@@ -118,5 +125,9 @@ $(function()
     {
         if (e.keyCode == 13)
             $("#animate").click();
+    });
+    $("#display").click(function()
+    {
+        $("#animate").html($("#display").prop("checked") ? "Display" : "Animate");
     });
 });
