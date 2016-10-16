@@ -1,0 +1,89 @@
+<!--
+Graph complex functions (C->C)
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/styleNew.css">
+        <link rel="shortcut icon" type="image/png" href="favicon.png">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
+        <script src="http://www.numericjs.com/lib/numeric-1.2.6.min.js"></script>
+        <script src="js/complex.js"></script>
+        <script src="js/complexfunctions.js"></script>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+        </script>
+        <title>Complex Functions</title>
+    </head>
+    <body>
+
+        <div class="container-fluid">
+            <div id="navbar"></div>
+            <script src="navbar.js"></script>
+
+            <h2>Graph <a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation">reverse polish notation</a>
+                      <a href="https://en.wikipedia.org/wiki/Complex_number">complex</a> functions</h2>
+
+            See explanation below.
+
+
+            <br>
+
+            <div class="container-fluid row">
+    			<div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                    <span class="input-group-addon">Function</span>
+                    <input id="function" class="form-control" type="text" value="x exp">
+                </div>
+            </div>
+            <br>
+            <button id="animate" class="btn btn-default">Animate</button>
+            <div id="canvas"></div>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12" id="explanation">
+                <h3>Explanation</h3>
+                The x axis represents the real component, and the y axis represents the imaginary component.
+                Complex numbers are numbers with both real and imaginary parts:
+                    $$z = a + b\sqrt{-1} = a + bi$$
+                Reverse Polish Notation, or <i>postfix</i> notation is a way of writing functions. Normally, most people would write functions using
+                <i>infix</i> notation like this:
+                    $$a + b + \sin c$$
+                Postfix notation looks like this:
+                    $$a\ b + c \sin +$$
+                For a more simple example, $a + b$ would be $a\ b\ +$, and $\sin x$ would be $x \sin$.
+                <h3>List of all functions and constants</h3>
+                <table class='table table-bordered table-hover'>
+                    <tr><th>Function or constant</th> <th>What it means</th></tr>
+                    <tr><td>x</td> <td>The input to the function.</td></tr>
+                    <tr><td>i</td> <td>$i = \sqrt{-1}$</td></tr>
+                    <tr><td>n (e.g. 5, 4, 3.1, -32.123)</td> <td> A real number. </td></tr>
+                    <tr><td>ni (e.g. 5i, 4i, 3.1i, -32.123i)</td> <td>$i$ ($\sqrt{-1}$) times a certain real number.</td></tr>
+                    <tr><td>+</td> <td>Addition</td></tr>
+                    <tr><td>-</td> <td>Subtraction</td></tr>
+                    <tr><td>*</td> <td>Multiplication</td></tr>
+                    <tr><td>/</td> <td>Division</td></tr>
+                    <tr><td>^</td> <td>Exponentiation ($a^b$)</td></tr>
+                    <tr><td>re</td> <td>Real component. If $z = a+bi$, $\textrm{Re}(z) = a$</td></tr>
+                    <tr><td>im</td> <td>Imaginary component. If $z = a+bi$, $\textrm{Im}(z) = b$</td></tr>
+                    <tr><td>pi</td> <td>$\pi = 3.14159265...$</td></tr>
+                    <tr><td>e</td> <td>$e = 2.7182818...$</td></tr>
+                    <tr><td>sqrt</td> <td>$\sqrt{x}$</td></tr>
+                    <tr><td>exp</td> <td>$e^x$</td></tr>
+                    <tr><td>sin</td> <td>Sine</td></tr>
+                    <tr><td>cos</td> <td>Cosine</td></tr>
+                    <tr><td>tan</td> <td>Tangent</td></tr>
+                    <tr><td>sinh</td> <td>Hyperbolic sine</td></tr>
+                    <tr><td>cosh</td> <td>Hyperbolic cosine</td></tr>
+                    <tr><td>tanh</td> <td>Hyperbolic tangent</td></tr>
+
+                </table>
+            </div>
+
+        </div>
+    </body>
+</html>
