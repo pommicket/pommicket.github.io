@@ -148,10 +148,7 @@ function run()
 
 
     ctx = document.getElementById("canvas").getContext("2d");
-
-    ctx.fillStyle = "#ffffff"
-    ctx.fillRect(0, 0, size, time);
-    ctx.fillStyle = "#000000"
+    ctx.fillStyle = "#000000";
 
     startingConfig = padConfiguration(startingConfig, size);
     /* Run the automaton. */
