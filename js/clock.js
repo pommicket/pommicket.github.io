@@ -19,7 +19,7 @@ function leapYear()
 
 function day365()
 {
-  var m = month();
+  var m = month()-1;
   var currday = 0;
   if (m == 0)
     return day();
