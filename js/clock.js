@@ -20,45 +20,43 @@ function leapYear()
 function day365()
 {
   var m = month()-1;
+  var d = day()-1;
   var currday = 0;
   if (m == 0)
     return day();
   currday += 31;
   if (m == 1)
-    return day()+currday;
+    return d+currday;
   currday += 28 + leapYear();
   if (m == 2)
-    return day()+currday;
+    return d+currday;
   currday += 31;
   if (m == 3)
-    return day()+currday;
+    return d+currday;
   currday += 30;
   if (m == 4)
-    return day()+currday;
+    return d+currday;
   currday += 31;
   if (m == 5)
-    return day()+currday;
+    return d+currday;
   currday += 30;
   if (m == 6)
-    return day()+currday;
+    return d+currday;
   currday += 31;
   if (m == 7)
-    return day()+currday;
+    return d+currday;
   currday += 31;
   if (m == 8)
-    return day()+currday;
+    return d+currday;
   currday += 30;
   if (m == 9)
-    return day()+currday;
+    return d+currday;
   currday += 31;
   if (m == 10)
-    return day()+currday;
+    return d+currday;
   currday += 30;
   if (m == 11)
-    return day()+currday;
-  currday += 31;
-  if (m == 12)
-    return day()+currday;
+    return d+currday;
   return -1;
 }
 
