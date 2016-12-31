@@ -1,10 +1,10 @@
-var WIDTH = 600;
-var HEIGHT = 600;
+var WIDTH = 650;
+var HEIGHT = 650;
 var CIRCLE_SIZE = 20;
-var SECOND_CIRCLE = 100;
-var MINUTE_CIRCLE = 200;
-var HOUR_CIRCLE = 300;
-var DAY_CIRCLE = 500;
+var SECOND_CIRCLE = 200;
+var MINUTE_CIRCLE = 300;
+var HOUR_CIRCLE = 400;
+var DAY_CIRCLE = 600;
 var FIREWORK_RADIUS = 10;
 
 var fireworks = [];
@@ -14,7 +14,7 @@ var startingDy = -1;
 
 function setup()
 {
-    createCanvas(700, 700);
+    createCanvas(650, 650);
     ellipseMode(CENTER);
     $("#title").html("Countdown to " + (year() + 1));
     document.title = "Countdown to " + (year() + 1);
@@ -102,6 +102,11 @@ Firework.prototype.draw = function()
 		fireworks[this.index] = null;
 }
 
+function numDigits(x)
+{
+    return x.toString().length;
+}
+
 function draw()
 {
     background(255, 255, 255);
@@ -111,6 +116,7 @@ function draw()
         //Happy new year!
 		fill(0);
         textSize(60);
+        textAlign(LEFT, BASELINE);
         text("HAPPY NEW YEAR!", 25, 250);
         new Firework(300, 300);
 		for (var i = 0; i < fireworks.length; i++)
@@ -148,7 +154,7 @@ function draw()
 		state = 1;
 	}
     noFill();
-    
+
     stroke(secs*4, 0, 0);
     ellipse(WIDTH / 2, HEIGHT / 2, SECOND_CIRCLE, SECOND_CIRCLE);
     stroke(0, mins*4, 0);
@@ -157,21 +163,21 @@ function draw()
     ellipse(WIDTH / 2, HEIGHT / 2, HOUR_CIRCLE, HOUR_CIRCLE);
     stroke(0, 0, 0);
     ellipse(WIDTH / 2, HEIGHT / 2, DAY_CIRCLE, DAY_CIRCLE);
-    
+
     noStroke();
-    
+
     var dayX = (cos(date) * DAY_CIRCLE / 2) + WIDTH / 2;
     var dayY = (sin(date) * DAY_CIRCLE / 2) + HEIGHT / 2;
-    
+
     var hourX = (cos(hours) * HOUR_CIRCLE / 2) + WIDTH / 2;
     var hourY = (sin(hours) * HOUR_CIRCLE / 2) + HEIGHT / 2;
-    
+
     var minuteX = (cos(minutes) * MINUTE_CIRCLE / 2) + WIDTH / 2;
     var minuteY = (sin(minutes) * MINUTE_CIRCLE / 2) + HEIGHT / 2;
-  
+
     var secondX = (cos(seconds) * SECOND_CIRCLE / 2) + WIDTH / 2;
     var secondY = (sin(seconds) * SECOND_CIRCLE / 2) + HEIGHT / 2;
-    
+
     fill(secs*4, 0, 0);
     ellipse(secondX, secondY, CIRCLE_SIZE, CIRCLE_SIZE);
     fill(0, mins*4, 0);
@@ -180,6 +186,7 @@ function draw()
     ellipse(hourX, hourY, CIRCLE_SIZE, CIRCLE_SIZE);
     fill(0, 0, 0);
     ellipse(dayX, dayY, CIRCLE_SIZE, CIRCLE_SIZE);
-    textSize(30);
-    text("Seconds until " + (year()+1) + ": " + seconds_until_ny, 5, 600);
+    textSize(56/(numDigits(seconds_until_ny)/5.0));
+    textAlign(CENTER, CENTER);
+    text(seconds_until_ny, width/2, height/2);
 }
