@@ -13,10 +13,17 @@
 	<p>The word list can be found <a href="https://raw.githubusercontent.com/sindresorhus/word-list/master/words.txt">here</a>.</p>
 	<div id="loading">Loading word list...</div>
 	<div id="word"></div>
-	<div id="hidden" style="visibility: hidden;">
+	<div id="inputs">
         <div class="container-fluid">
             <div class="row">
-                <div class="input-group input-group-md col-lg-3 col-md-6 col-sm-8 col-xs-10">
+                <div class="input-group input-group-md col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    </span>
+                    <input class="form-control input-lg" type="text" id="length" placeholder="Word length" onKeyDown="if(event.keyCode==13) play();">
+                    <span class="input-group-addon">
+                        <button class="btn btn-sm btn-primary" onclick="play();">Play!</button>
+                    </span>
+                </div>
+                <div class="input-group input-group-md col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <input class="form-control input-lg" type="text" id="guess" onKeyDown="if(event.keyCode==13) submit();">
                     <span class="input-group-addon">
                         <button class="btn btn-sm btn-primary" onclick="submit();">Submit guess</button>
@@ -25,12 +32,14 @@
                         <button class="btn btn-sm btn-danger" onclick="giveUp();">Give up?</button>
                     </span>
                 </div>
-            </div>
-        </div>
 
+            </div>
+
+        </div>
 	</div>
 	<div id="answer"></div>
-	<button id="again" class="btn btn-sm btn-primary" style="visibility: hidden;" onclick="play();">Play again</button>
+    <div id="error" style="color: red;"></div>
+	<button id="again" class="btn btn-sm btn-primary" onclick="play();">Play again (Press enter, or click here)</button>
 	<script src="js/anagramgame.js"></script>
   </body>
 

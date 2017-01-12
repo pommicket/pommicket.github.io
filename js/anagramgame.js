@@ -1,5 +1,6 @@
 var words = [];
 var word;
+var length;
 var anagram;
 var alphabet = "qwertyuiopasdfghjklzxcvbnm";
 var letters = alphabet + alphabet.toUpperCase();
@@ -51,6 +52,7 @@ function findWord()
 {
 	var numWords = words.length;
 	word = words[Math.floor(Math.random()*numWords)];
+	console.log(words.length);
 	if (containsSymbols(word))
 		findWord();
 	var lc = letterCounts(word);
@@ -67,16 +69,24 @@ function findWord()
 
 function play()
 {
-	$("#hidden").attr("style", "visibility: hidden;");
-	$("#again").attr("style", "visibility: hidden;");
-	$("#answer").attr("style", "visibility: hidden;");
+	length = $("#length").val();
+	loadWords();
+
+}
+
+
+function showWord()
+{
+	$("#inputs").hide();
+	$("#again").hide();
+	$("#answer").hide();
 	$("#guess").val("");
 	$("#loading").html("Finding a word with an anagram...");
 	findWord();
 	$("#loading").html("");
 	$("#word").html("Find an anagram of " + word + ".");
-	$("#hidden").attr("style", "");
-
+	$("#inputs").show();
+	$("#guess").focus();
 }
 
 function isWord(x)
@@ -86,6 +96,11 @@ function isWord(x)
 
 function loadWords()
 {
+	if (length < 2 || length > 18)
+	{
+		$("#error").text("Word length must be 2-18.");
+		return;
+	}
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function()
 	{
@@ -95,10 +110,10 @@ function loadWords()
 			words = [];
 			for (var i = 0; i < allwords.length; i++)
 			{
-				if (allwords[i].length == 7)
+				if (allwords[i].length == length)
 					words.push(allwords[i].toLowerCase());
 			}
-			play();
+			showWord();
 		}
 	};
 	xhttp.open("GET", "https://raw.githubusercontent.com/sindresorhus/word-list/master/words.txt", true);
@@ -107,27 +122,37 @@ function loadWords()
 
 function submit()
 {
+	if ($("#again").is(":visible"))
+	{
+		play();
+		return;
+	}
 	var guess = $("#guess").val().toLowerCase();
 	if (guess != word && letterCounts(guess).equals(letterCounts(word)) && isWord(guess))
 	{
-		$("#answer").attr("style", "");
+		$("#answer").show();
 		$("#answer").html("<span style='color: green'>Correct!</span>");
 
-		$("#again").attr("style", "");
+		$("#again").show();
 	}
 	else
 	{
-		$("#answer").attr("style", "");
+		$("#answer").show();
 		$("#answer").html("<span style='color: red'>Incorrect!</span>");
 	}
 }
 
 function giveUp()
 {
-	$("#answer").attr("style", "");
+	$("#answer").show();
 	$("#answer").html("<span style='color: red'>The answer was " + anagram + ".</span>");
 
-	$("#again").attr("style", "");
+	$("#again").show();
 }
 
-loadWords();
+
+$("#again").hide();
+$("#answer").hide();
+$("#guess").val("");
+$("#loading").hide();
+$("#guess").show();
