@@ -28,7 +28,7 @@ function drawCA()
         $("#error").text("Error - Invalid parameters: " + $("#params").val() + ".");
         return;
     }
-    createCanvas(width, time);
+    createCanvas(width, time).parent("#canvas");
     var C = Math.floor(params.length / 2);
     var values = [[]];
     for (var i = 0; i < width; i++)

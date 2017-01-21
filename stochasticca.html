@@ -7,17 +7,40 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
         <meta charset="utf-8">
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <title>Stochastic Cellular Automata</title>
     </head>
     <body>
         <div id="navbar"></div>
         <script src="navbar.js"></script>
         <h2>Stochastic Cellular Automata</h2>
+        <p>
+            The parameters should consist of an odd number of numbers separated by commas.
+        </p>
         Parameters: <input type="text" value="-3, 3, -3" id="params"><br>
         Width: <input type="number" value="400" id="width"><br>
         Time: <input type="number" value="400" id="time"><br>
         <button id="display">Display</button><br>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
         <script src="js/stochasticca.js"></script>
+        <div id="canvas"></div>
+        <p>
+            The probability of any cell being black is determined by the cells above it using this formula (where $\theta$ is a vector containing the parameters,
+            $t$ is the time passed (or row), and $i$ is the column):
+            $$L = \frac{||\theta||-1}{2}$$
+            $$p(0, i) = 1$$
+            $$\text{(when t > 0) } p(t, i) = \theta \cdot
+            \begin{bmatrix}
+            c(t-1, i-L)\\
+            c(t-1, i-L+1)\\
+            \vdots \\
+            c(t-1, i+L)
+            \end{bmatrix}$$
+            $$c(t, i) = \text{a number with a $p(t, i)$ probability of being 1}$$
+
+        </p>
     </body>
 </html>
