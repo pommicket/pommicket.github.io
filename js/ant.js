@@ -73,6 +73,7 @@ function resetPos()
 	antPos[1] = height/2;
 	stroke(255, 0, 0);
 	point(antPos[0], antPos[1]);
+	running = false;
 }
 
 function drawCell(x, y)
